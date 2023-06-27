@@ -29,16 +29,23 @@ namespace _01_LayoutByXrefBlock
                 //Get user input
                 PromptResult pResult = ed.GetKeywords(pko);
                 string strfilter = "";
-                if(pResult.StringResult == "XRef")
+                if (pResult.StringResult == "XRef")
                 { strfilter = "XREF"; }
-                else if(pResult.StringResult == "bLock")
-                { strfilter = "INSERT"; }    
+                else if (pResult.StringResult == "bLock")
+                { strfilter = "INSERT"; }
                 var tvs = new TypedValue[]
                 {new TypedValue((int)DxfCode.Start, strfilter) };
 
                 var filter = new SelectionFilter(tvs);
 
-                var psr = ed.GetSelection("Chọn ",filter);
+                var psr = ed.GetSelection(filter);
+
+                var ps = psr.Value;
+                foreach ( var v in ps )
+                {
+                    v.ToString();
+                    
+                }
             }
             catch (Exception) 
             { 
