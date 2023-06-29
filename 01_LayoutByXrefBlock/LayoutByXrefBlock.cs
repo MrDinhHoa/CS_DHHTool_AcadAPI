@@ -13,39 +13,38 @@ namespace _01_LayoutByXrefBlock
 {
     public class LayoutByXrefBlock
     {
-        [CommandMethod("LayoutbyXrefBlock")]
+        [CommandMethod("LayByXrBl")]
+        [Obsolete]
         public void LayoutbyXrefBlock()
         {
             var aDoc = Application.DocumentManager.MdiActiveDocument;
             Editor ed = aDoc.Editor;
             try
             {
-                //Create the prompts
-                PromptKeywordOptions pko = new PromptKeywordOptions("Chọn Xref / Block: ");
-                pko.Keywords.Add("XRef");
-                pko.Keywords.Add("bLock");
-                pko.AllowNone = false;
+                //Chọn block mẫu
+                string blockName;
+                TypedValue[] tvs = new TypedValue[]
+                {new TypedValue((int)DxfCode.Start, "INSERT") };
+                SelectionFilter filter = new SelectionFilter(tvs);
+                PromptSelectionResult psr = ed.GetSelection(filter);
+                SelectionSet ss = psr.Value;
+                ObjectId  objID  = ss[0].ObjectId;
+                using(BlockReference oBlock = objID.Open(OpenMode.ForRead) as BlockReference)
+                { blockName = oBlock.Name;}
 
-                //Get user input
-                PromptResult pResult = ed.GetKeywords(pko);
-                string strfilter = "";
-                if (pResult.StringResult == "XRef")
-                { strfilter = "XREF"; }
-                else if (pResult.StringResult == "bLock")
-                { strfilter = "INSERT"; }
-                var tvs = new TypedValue[]
-                {new TypedValue((int)DxfCode.Start, strfilter) };
-
-                var filter = new SelectionFilter(tvs);
-
-                var psr = ed.GetSelection(filter);
-
-                var ps = psr.Value;
-                foreach ( var v in ps )
+                //Chọn tất cả các block dựa vào block mẫu
+                TypedValue[] tvbyName = new TypedValue[]
+                {new TypedValue((int)DxfCode.BlockName, blockName) };
+                SelectionFilter filterbyName = new SelectionFilter(tvbyName);
+                PromptSelectionResult psrbyName = ed.GetSelection(filterbyName);
+                SelectionSet ssbyName = psrbyName.Value;
+                foreach(SelectedObject v in ssbyName) 
                 {
-                    v.ToString();
-                    
+                    ObjectId objIDbyName = v.ObjectId;
+                    using (BlockReference oblByName = objIDbyName.Open(OpenMode.ForRead) as BlockReference);
                 }
+             
+
             }
             catch (Exception) 
             { 
