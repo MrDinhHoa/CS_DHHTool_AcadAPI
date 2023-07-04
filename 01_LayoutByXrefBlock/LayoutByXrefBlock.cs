@@ -207,7 +207,11 @@ namespace _01_LayoutByXrefBlock
             Autodesk.AutoCAD.ApplicationServices.Document aDoc = Application.DocumentManager.MdiActiveDocument;
             Database db = aDoc.Database;
             Editor ed = aDoc.Editor;
-            
+            PromptStringOptions Prefix = new PromptStringOptions("Type Prefix: ");
+            PromptResult prefixResult = ed.GetString(Prefix);
+            PromptDoubleOptions number = new PromptDoubleOptions("Type number start: ");
+            PromptDoubleResult startResult = ed.GetDouble(number);
+
             try
             {
                 //Chọn block mẫu
