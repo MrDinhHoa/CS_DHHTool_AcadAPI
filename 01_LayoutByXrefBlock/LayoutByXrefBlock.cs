@@ -232,21 +232,32 @@ namespace _01_LayoutByXrefBlock
                 PromptSelectionResult psrbyName = ed.GetSelection(filterbyName);
                 SelectionSet ssbyName = psrbyName.Value;
                 List<BlockReference> listBlock = new List<BlockReference>();
-                List<Autodesk.AutoCAD.Geometry.Point3d> listPoint3D = new List<Autodesk.AutoCAD.Geometry.Point3d>();
-                for (int i = 0; i < ssbyName.Count; i++) 
+                List<Point3d> listPoint3D = new List<Point3d>();
+                for (int i = 0; i < ssbyName.Count; i++)
                 {
+                    double v = startResult.Value;
+                    double dwgNo = startResult.Value + i;
+                    string name = null;
+                    if (dwgNo < 10)
+                    { name = "0" + dwgNo.ToString(); }
+                    else { name = dwgNo.ToString(); }
+                    string fulldwgname = prefixResult.StringResult + name;
                     Extents2d ext = new Extents2d();
                     using (Transaction tr = db.TransactionManager.StartTransaction())
                     {
                         ObjectId objIDbyName = ssbyName[i].ObjectId;
                         using (BlockReference oblByName = objIDbyName.Open(OpenMode.ForRead) as BlockReference)
                         {
+                            Point2d minPoint2D = oblByName.Bounds.Value.MinPoint.Strip();
+                            Point3d minPoint3D = minPoint2D.Pad();
+                            Point2d maxPoint2D = oblByName.Bounds.Value.MaxPoint.Strip();
+                            Point3d maxPoint3D = maxPoint2D.Pad();
                             // Create and select a new layout tab
-                            ObjectId id = LayoutManager.Current.CreateAndMakeLayoutCurrent(i.ToString());
+                            ObjectId id = LayoutManager.Current.CreateAndMakeLayoutCurrent(fulldwgname);
                             // Open the created layout
                             Layout lay = (Layout)tr.GetObject(id, OpenMode.ForWrite);
                             // Make some settings on the layout and get its extents
-                            Point3d _ = oblByName.Bounds.Value.MinPoint;
+                            _ = oblByName.Bounds.Value.MinPoint;
                             lay.SetPlotSettings
                                 (
                                     //"ISO_full_bleed_2A0_(1189.00_x_1682.00_MM)", // Try this big boy!
@@ -266,8 +277,8 @@ namespace _01_LayoutByXrefBlock
                                     // (found by measuring pixels on screenshots of Layout1, etc.)
                                     vp.ResizeViewport(ext, 1);
                                     // Adjust the view so that the model contents fit
-                                    if (ValidDbExtents(oblByName.Bounds.Value.MinPoint, oblByName.Bounds.Value.MaxPoint))
-                                    { vp.FitContentToViewport(new Extents3d(oblByName.Bounds.Value.MinPoint, oblByName.Bounds.Value.MaxPoint), 1/(oblByName.ScaleFactors.X)); }
+                                    //if (ValidDbExtents(minPoint3D, maxPoint3D))
+                                    vp.FitContentToViewport(new Extents3d(minPoint3D, maxPoint3D), 1/(oblByName.ScaleFactors.X));
                                     // Finally we lock the view to prevent meddling
                                     vp.Locked = true;
                                 }
