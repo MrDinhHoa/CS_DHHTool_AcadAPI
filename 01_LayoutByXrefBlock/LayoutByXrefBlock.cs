@@ -175,26 +175,27 @@ namespace _01_LayoutByXrefBlock
         /// <param name="fac">Optional factor to provide padding.</param>
         public static void FitContentToViewport(this Viewport vp, Extents3d ext, double fac = 1.0)
         {
-
+            vp.CustomScale = fac;
             // Let's zoom to just larger than the extents
             vp.ViewCenter = (ext.MinPoint + ((ext.MaxPoint - ext.MinPoint) * 0.5)).Strip();
-            // Get the dimensions of our view from the database extents
-            double hgt = ext.MaxPoint.Y - ext.MinPoint.Y;
-            double wid = ext.MaxPoint.X - ext.MinPoint.X;
-            // We'll compare with the aspect ratio of the viewport itself
-            // (which is derived from the page size)
-            double aspect = vp.Width / vp.Height;
-            // If our content is wider than the aspect ratio, make sure we
-            // set the proposed height to be larger to accommodate the
-            // content
+            
+            //// Get the dimensions of our view from the database extents
+            //double hgt = ext.MaxPoint.Y - ext.MinPoint.Y;
+            //double wid = ext.MaxPoint.X - ext.MinPoint.X;
+            //// We'll compare with the aspect ratio of the viewport itself
+            //// (which is derived from the page size)
+            //double aspect = vp.Width / vp.Height;
+            //// If our content is wider than the aspect ratio, make sure we
+            //// set the proposed height to be larger to accommodate the
+            //// content
 
-            if (wid / hgt > aspect)
-            { hgt = wid / aspect; }
-            // Set the height so we're exactly at the extents
-            vp.ViewHeight = hgt;
-            // Set a custom scale to zoom out slightly (could also
-            // vp.ViewHeight *= 1.1, for instance)
-            vp.CustomScale = fac;
+            //if (wid / hgt > aspect)
+            //{ hgt = wid / aspect; }
+            //// Set the height so we're exactly at the extents
+            //vp.ViewHeight = hgt;
+            //// Set a custom scale to zoom out slightly (could also
+            //// vp.ViewHeight *= 1.1, for instance)
+            
         }
     }
 
@@ -212,10 +213,15 @@ namespace _01_LayoutByXrefBlock
             PromptDoubleOptions number = new PromptDoubleOptions("Type number start: ");
             PromptDoubleResult startResult = ed.GetDouble(number);
 
+            double v;
+            if(startResult.Status!= PromptStatus.OK) { v = 0;}  
+            else { v = startResult.Value; }
             try
             {
                 //Chọn block mẫu
                 string blockName;
+                Point2d insertPoint;
+                double oBScale;
                 TypedValue[] tvs = new TypedValue[]
                 {new TypedValue((int)DxfCode.Start, "INSERT") };
                 SelectionFilter filter = new SelectionFilter(tvs);
@@ -223,7 +229,22 @@ namespace _01_LayoutByXrefBlock
                 SelectionSet ss = psr.Value;
                 ObjectId  objID  = ss[0].ObjectId;
                 using(BlockReference oBlock = objID.Open(OpenMode.ForRead) as BlockReference)
-                { blockName = oBlock.Name;}
+                { 
+                    blockName = oBlock.Name;
+                    oBScale = oBlock.ScaleFactors.X;
+                    insertPoint = oBlock.Position.Strip();
+                }                       
+                //Chọn biên dạng của vùng khung tên
+                PromptPointOptions p1click = new PromptPointOptions("Select Point P1: ");
+                PromptPointResult p1Result = ed.GetPoint(p1click);
+                PromptPointOptions p2click = new PromptPointOptions("Select Point P2: ");
+                PromptPointResult p2Result = ed.GetPoint(p2click);
+                Point2d p1 = p1Result.Value.Strip();
+                Point2d p2 = p2Result.Value.Strip();
+
+                //Set biên dạng cho các block 
+                Vector2d InP1vector = p1 - insertPoint;
+                Vector2d InP2vector = p2 - insertPoint;
 
                 //Chọn tất cả các block dựa vào block mẫu
                 TypedValue[] tvbyName = new TypedValue[]
@@ -232,10 +253,9 @@ namespace _01_LayoutByXrefBlock
                 PromptSelectionResult psrbyName = ed.GetSelection(filterbyName);
                 SelectionSet ssbyName = psrbyName.Value;
                 List<BlockReference> listBlock = new List<BlockReference>();
-                List<Point3d> listPoint3D = new List<Point3d>();
                 for (int i = 0; i < ssbyName.Count; i++)
                 {
-                    double v = startResult.Value;
+                    
                     double dwgNo = startResult.Value + i;
                     string name = null;
                     if (dwgNo < 10)
@@ -248,10 +268,16 @@ namespace _01_LayoutByXrefBlock
                         ObjectId objIDbyName = ssbyName[i].ObjectId;
                         using (BlockReference oblByName = objIDbyName.Open(OpenMode.ForRead) as BlockReference)
                         {
-                            Point2d minPoint2D = oblByName.Bounds.Value.MinPoint.Strip();
-                            Point3d minPoint3D = minPoint2D.Pad();
-                            Point2d maxPoint2D = oblByName.Bounds.Value.MaxPoint.Strip();
-                            Point3d maxPoint3D = maxPoint2D.Pad();
+                            double objScale = oblByName.ScaleFactors.X;
+                            double scaleFactor = objScale / oBScale;
+                            Point2d objPosition = oblByName.Position.Strip();
+                            Vector2d P1scaleVecto = InP1vector * scaleFactor;
+                            Vector2d P2scaleVecto = InP2vector * scaleFactor;
+
+                            Point2d PointP1block = objPosition + P1scaleVecto;
+                            Point2d PointP2block = objPosition + P2scaleVecto;
+
+
                             // Create and select a new layout tab
                             ObjectId id = LayoutManager.Current.CreateAndMakeLayoutCurrent(fulldwgname);
                             // Open the created layout
@@ -278,7 +304,7 @@ namespace _01_LayoutByXrefBlock
                                     vp.ResizeViewport(ext, 1);
                                     // Adjust the view so that the model contents fit
                                     //if (ValidDbExtents(minPoint3D, maxPoint3D))
-                                    vp.FitContentToViewport(new Extents3d(minPoint3D, maxPoint3D), 1/(oblByName.ScaleFactors.X));
+                                    vp.FitContentToViewport(new Extents3d(PointP1block.Pad(), PointP2block.Pad()), 1/(oblByName.ScaleFactors.X));
                                     // Finally we lock the view to prevent meddling
                                     vp.Locked = true;
                                 }
