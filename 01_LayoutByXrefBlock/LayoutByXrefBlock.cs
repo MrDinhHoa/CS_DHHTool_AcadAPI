@@ -216,13 +216,13 @@ namespace _01_LayoutByXrefBlock
             PromptSelectionResult psr = ed.GetSelection();
             SelectionSet ss = psr.Value;
             ObjectId objID = ss[0].ObjectId;
-            using (Viewport oBlock = objID.Open(OpenMode.ForRead) as Viewport) 
+            using (Viewport oBlock = objID.Open(OpenMode.ForRead) as Viewport)
             { }
 
-
-            double v;
-            if(startResult.Status!= PromptStatus.OK) { v = 0;}  
-            else { v = startResult.Value; }
+            #region Viewport
+            //double v;
+            //if(startResult.Status!= PromptStatus.OK) { v = 0;}  
+            //else { v = startResult.Value; }
             //try
             //{
             //    //Chọn block mẫu
@@ -234,13 +234,13 @@ namespace _01_LayoutByXrefBlock
             //    SelectionFilter filter = new SelectionFilter(tvs);
             //    PromptSelectionResult psr = ed.GetSelection(filter);
             //    SelectionSet ss = psr.Value;
-            //    ObjectId  objID  = ss[0].ObjectId;
-            //    using(BlockReference oBlock = objID.Open(OpenMode.ForRead) as BlockReference)
-            //    { 
+            //    ObjectId objID = ss[0].ObjectId;
+            //    using (BlockReference oBlock = objID.Open(OpenMode.ForRead) as BlockReference)
+            //    {
             //        blockName = oBlock.Name;
             //        oBScale = oBlock.ScaleFactors.X;
             //        insertPoint = oBlock.Position.Strip();
-            //    }                       
+            //    }
             //    //Chọn biên dạng của vùng khung tên
             //    PromptPointOptions p1click = new PromptPointOptions("Select Point P1: ");
             //    PromptPointResult p1Result = ed.GetPoint(p1click);
@@ -262,7 +262,7 @@ namespace _01_LayoutByXrefBlock
             //    List<BlockReference> listBlock = new List<BlockReference>();
             //    for (int i = 0; i < ssbyName.Count; i++)
             //    {
-                    
+
             //        double dwgNo = startResult.Value + i;
             //        string name = null;
             //        if (dwgNo < 10)
@@ -322,14 +322,15 @@ namespace _01_LayoutByXrefBlock
             //            ed.Command("_.ZOOM", "_E");
             //            ed.Regen();
             //        }
-                    
-            //    }    
-                
+
+            //    }
+
 
             //}
-            //catch (Exception) 
-            //{ 
+            //catch (Exception)
+            //{
             //}
+            #endregion
         }
         // Returns whether the provided DB extents - retrieved from
         // Database.Extmin/max - are "valid" or whether they are the default
