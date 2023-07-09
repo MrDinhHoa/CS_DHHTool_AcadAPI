@@ -1,8 +1,8 @@
 
 
-FATAL ERROR:  Unhandled Access Violation Reading 0x0010 Exception at B4DE556Ch
+FATAL ERROR:  Unhandled Access Violation Reading 0x0000 Exception at 2C639C5Ch
 
-07/06/2023 at 17:29:06.000  Drawing: D:\01. WORKING\00. C-Sharp\00.CS_ACADFile\ACAD File.dwg
+07/09/2023 at 17:26:35.000  Drawing: D:\STUDY\Programming\C-Sharp\00.CS_ACADFile\ACAD File.dwg
 -------------
-lopment\02. Structural\Drawing\230703- BDA and FFC\02 STRU\DWG\100 GENERAL\100-S1.02~15 GENERAL NOTES-1~14.dwg
+pment\02. Structural\Drawing\230703- BDA and FFC\02 STRU\DWG\100 GENERAL\100-S1.02~15 GENERAL NOTES-1~14.dwg
 -------------
