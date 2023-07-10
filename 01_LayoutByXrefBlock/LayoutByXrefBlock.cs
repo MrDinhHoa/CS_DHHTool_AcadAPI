@@ -66,7 +66,7 @@ namespace _01_LayoutByXrefBlock
         /// <param name="tr">The transaction to use to open the viewports.</param>
         /// <param name="vpNum">The number of the target viewport.</param>
         /// <param name="f">The action to apply to each of the viewports.</param>
-        public static void ApplyToViewport(this Layout lay, Transaction tr, int vpNum, Action<Viewport> f)
+        public static void ApplyToViewport(this Layout lay, Transaction tr, Action<Viewport> f)
         {
             ObjectIdCollection vpIds = lay.GetViewports();
             Viewport vp = null;
@@ -82,19 +82,20 @@ namespace _01_LayoutByXrefBlock
             //    vp.On = true;
             //    vp.GridOn = true;
             //}
-            foreach (ObjectId vpId in vpIds)
-            {
-                Viewport vp2 = tr.GetObject(vpId, OpenMode.ForWrite) as Viewport;
-                if (vp2 != null && vp2.Number == vpNum)
-                {
-                    // We have found our viewport, so call the action
-                    vp = vp2;
-                    vp.Layer = "Defpoints";
-                    break;
-                }
-            }
-
-            
+            //foreach (ObjectId vpId in vpIds)
+            //{
+            //    Viewport vp2 = tr.GetObject(vpId, OpenMode.ForWrite) as Viewport;
+            //    if (vp2 != null && vp2.Number == vpNum)
+            //    {
+            //        // We have found our viewport, so call the action
+            //        vp = vp2;
+            //        vp.Layer = "Defpoints";
+            //        break;
+            //    }
+            //}
+            Viewport vp2 = tr.GetObject(vpIds[0], OpenMode.ForWrite) as Viewport;
+            vp = vp2;
+            vp.Layer = "Defpoints";
             // Finally we call our function on it
             f(vp);
         }
@@ -308,7 +309,7 @@ namespace _01_LayoutByXrefBlock
                             ext = lay.GetMaximumExtents();
                             lay.ApplyToViewport
                             (
-                                tr, 1,
+                                tr,
                                 vp =>
                                 {
                                     // Size the viewport according to the extents calculated when
