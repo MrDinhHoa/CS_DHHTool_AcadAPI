@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.6.33801.468
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_LayoutByXrefBlock", "01_LayoutByXrefBlock\01_LayoutByXrefBlock.csproj", "{4570FCF4-C1F4-407D-8495-E9E5D4F325E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_TextByCoordinate", "02_TextByCoordinate\02_TextByCoordinate.csproj", "{1C9CE28C-446D-46AF-9184-324E1DE4E6EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4570FCF4-C1F4-407D-8495-E9E5D4F325E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4570FCF4-C1F4-407D-8495-E9E5D4F325E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4570FCF4-C1F4-407D-8495-E9E5D4F325E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C9CE28C-446D-46AF-9184-324E1DE4E6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C9CE28C-446D-46AF-9184-324E1DE4E6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C9CE28C-446D-46AF-9184-324E1DE4E6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C9CE28C-446D-46AF-9184-324E1DE4E6EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
