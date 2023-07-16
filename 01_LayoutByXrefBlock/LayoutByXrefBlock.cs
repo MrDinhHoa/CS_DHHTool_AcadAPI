@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application = Autodesk.AutoCAD.ApplicationServices.Application;
+using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Runtime;
 using Exception = Autodesk.AutoCAD.Runtime.Exception;
@@ -11,6 +11,9 @@ using Autodesk.AutoCAD.DatabaseServices;
 using System.Collections;
 using Autodesk.AutoCAD.Geometry;
 using static System.Net.Mime.MediaTypeNames;
+using System.Runtime.InteropServices;
+using Autodesk.AutoCAD.ApplicationServices;
+// ReSharper disable All
 
 namespace _01_LayoutByXrefBlock
 {
@@ -66,38 +69,36 @@ namespace _01_LayoutByXrefBlock
         /// <param name="tr">The transaction to use to open the viewports.</param>
         /// <param name="vpNum">The number of the target viewport.</param>
         /// <param name="f">The action to apply to each of the viewports.</param>
-        public static void ApplyToViewport(this Layout lay, Transaction tr, Action<Viewport> f)
+        public static void ApplyToViewport(this Layout lay, Transaction tr, int vpNum, Action<Viewport> f)
         {
-            ObjectIdCollection vpIds = lay.GetViewports();
+            var vpIds = lay.GetViewports();
             Viewport vp = null;
-            //if (vp == null)
-            //{
-            //    // We have not found our viewport, so create one
-            //    BlockTableRecord btr = (BlockTableRecord)tr.GetObject(lay.BlockTableRecordId, OpenMode.ForWrite);
-            //    vp = new Viewport();
-            //    // Add it to the database
-            //    btr.AppendEntity(vp);
-            //    tr.AddNewlyCreatedDBObject(vp, true);
-            //    // Turn it - and its grid - on
-            //    vp.On = true;
-            //    vp.GridOn = true;
-            //}
-            //foreach (ObjectId vpId in vpIds)
-            //{
-            //    Viewport vp2 = tr.GetObject(vpId, OpenMode.ForWrite) as Viewport;
-            //    if (vp2 != null && vp2.Number == vpNum)
-            //    {
-            //        // We have found our viewport, so call the action
-            //        vp = vp2;
-            //        vp.Layer = "Defpoints";
-            //        break;
-            //    }
-            //}
-            Viewport vp2 = tr.GetObject(vpIds[0], OpenMode.ForWrite) as Viewport;
-            vp = vp2;
-            vp.Layer = "Defpoints";
+            foreach (ObjectId vpId in vpIds)
+            {
+                var vp2 = tr.GetObject(vpId, OpenMode.ForWrite) as Viewport;
+                if (vp2 != null && vp2.Number == vpNum)
+                {
+                    // We have found our viewport, so call the action
+                    vp = vp2;
+                    break;
+                }
+            }
+            if (vp == null)
+            { 
+                // We have not found our viewport, so create one
+                var btr = (BlockTableRecord)tr.GetObject(lay.BlockTableRecordId, OpenMode.ForWrite);
+                vp = new Viewport();
+                // Add it to the database
+                btr.AppendEntity(vp);
+                tr.AddNewlyCreatedDBObject(vp, true);
+                // Turn it - and its grid - on
+                //vp.On = true;
+                //vp.GridOn = true;
+
+            }
             // Finally we call our function on it
             f(vp);
+
         }
 
         /// <summary>
@@ -216,134 +217,135 @@ namespace _01_LayoutByXrefBlock
             PromptResult prefixResult = ed.GetString(Prefix);
             PromptDoubleOptions number = new PromptDoubleOptions("Type number start: ");
             PromptDoubleResult startResult = ed.GetDouble(number);
-            //PromptSelectionResult psr = ed.GetSelection();
-            //SelectionSet ss = psr.Value;
-            //ObjectId objID = ss[0].ObjectId;
-            //using (Viewport oBlock = objID.Open(OpenMode.ForRead) as Viewport)
-            //{ }
+            PromptSelectionResult psr = ed.GetSelection();
+            SelectionSet ss = psr.Value;
+            ObjectId objID = ss[0].ObjectId;
+            using (Viewport oBlock = objID.Open(OpenMode.ForRead) as Viewport)
+            { }
 
-            #region Viewport
-            double v;
-            if (startResult.Status != PromptStatus.OK) { v = 0; }
-            else { v = startResult.Value; }
-            try
-            {
-                //Chọn block mẫu
-                string blockName;
-                Point2d insertPoint;
-                double oBScale;
-                TypedValue[] tvs = new TypedValue[]
-                {new TypedValue((int)DxfCode.Start, "INSERT") };
-                SelectionFilter filter = new SelectionFilter(tvs);
-                PromptSelectionResult psr = ed.GetSelection(filter);
-                SelectionSet ss = psr.Value;
-                ObjectId objID = ss[0].ObjectId;
-                using (BlockReference oBlock = objID.Open(OpenMode.ForRead) as BlockReference)
-                {
-                    blockName = oBlock.Name;
-                    oBScale = oBlock.ScaleFactors.X;
-                    insertPoint = oBlock.Position.Strip();
-                }
-                //Chọn biên dạng của vùng khung tên
-                PromptPointOptions p1click = new PromptPointOptions("Select Point P1: ");
-                PromptPointResult p1Result = ed.GetPoint(p1click);
-                PromptPointOptions p2click = new PromptPointOptions("Select Point P2: ");
-                PromptPointResult p2Result = ed.GetPoint(p2click);
-                Point2d p1 = p1Result.Value.Strip();
-                Point2d p2 = p2Result.Value.Strip();
+            //#region Viewport
+            //double v;
+            //if (startResult.Status != PromptStatus.OK) { v = 0; }
+            //else { v = startResult.Value; }
+            //try
+            //{
+            //    //Chọn block mẫu
+            //    string blockName;
+            //    Point2d insertPoint;
+            //    double oBScale;
+            //    TypedValue[] tvs = new TypedValue[]
+            //    {new TypedValue((int)DxfCode.Start, "INSERT") };
+            //    SelectionFilter filter = new SelectionFilter(tvs);
+            //    PromptSelectionResult psr = ed.GetSelection(filter);
+            //    SelectionSet ss = psr.Value;
+            //    ObjectId objID = ss[0].ObjectId;
+            //    using (BlockReference oBlock = objID.Open(OpenMode.ForRead) as BlockReference)
+            //    {
+            //        blockName = oBlock.Name;
+            //        oBScale = oBlock.ScaleFactors.X;
+            //        insertPoint = oBlock.Position.Strip();
+            //    }
+            //    //Chọn biên dạng của vùng khung tên
+            //    PromptPointOptions p1click = new PromptPointOptions("Select Point P1: ");
+            //    PromptPointResult p1Result = ed.GetPoint(p1click);
+            //    PromptPointOptions p2click = new PromptPointOptions("Select Point P2: ");
+            //    PromptPointResult p2Result = ed.GetPoint(p2click);
+            //    Point2d p1 = p1Result.Value.Strip();
+            //    Point2d p2 = p2Result.Value.Strip();
 
-                //Set biên dạng cho các block 
-                Vector2d InP1vector = p1 - insertPoint;
-                Vector2d InP2vector = p2 - insertPoint;
+            //    //Set biên dạng cho các block 
+            //    Vector2d InP1vector = p1 - insertPoint;
+            //    Vector2d InP2vector = p2 - insertPoint;
 
-                //Chọn tất cả các block dựa vào block mẫu
-                TypedValue[] tvbyName = new TypedValue[]
-                {new TypedValue((int)DxfCode.BlockName, blockName) };
-                SelectionFilter filterbyName = new SelectionFilter(tvbyName);
-                PromptSelectionResult psrbyName = ed.GetSelection(filterbyName);
-                SelectionSet ssbyName = psrbyName.Value;
-                for (int i = 0; i < ssbyName.Count; i++)
-                {
+            //    //Chọn tất cả các block dựa vào block mẫu
+            //    TypedValue[] tvbyName = new TypedValue[]
+            //    {new TypedValue((int)DxfCode.BlockName, blockName) };
+            //    SelectionFilter filterbyName = new SelectionFilter(tvbyName);
+            //    PromptSelectionResult psrbyName = ed.GetSelection(filterbyName);
+            //    SelectionSet ssbyName = psrbyName.Value;
+            //    for (int i = 0; i < ssbyName.Count; i++)
+            //    {
 
-                    double dwgNo = startResult.Value + i;
-                    string name = null;
-                    if (dwgNo < 10)
-                    { name = "0" + dwgNo.ToString(); }
-                    else { name = dwgNo.ToString(); }
-                    string fulldwgname = prefixResult.StringResult + name;
-                    Extents2d ext = new Extents2d();
-                    using (Transaction tr = db.TransactionManager.StartTransaction())
-                    {
-                        ObjectId objIDbyName = ssbyName[i].ObjectId;
-                        using (BlockReference oblByName = objIDbyName.Open(OpenMode.ForRead) as BlockReference)
-                        {
-                            double objScale = oblByName.ScaleFactors.X;
-                            double scaleFactor = objScale / oBScale;
-                            Point2d objPosition = oblByName.Position.Strip();
-                            Vector2d P1scaleVecto = InP1vector * scaleFactor;
-                            Vector2d P2scaleVecto = InP2vector * scaleFactor;
+            //        double dwgNo = startResult.Value + i;
+            //        string name = null;
+            //        if (dwgNo < 10)
+            //        { name = "0" + dwgNo.ToString(); }
+            //        else { name = dwgNo.ToString(); }
+            //        string fulldwgname = prefixResult.StringResult + name;
+            //        Extents2d ext = new Extents2d();
+            //        using (Transaction tr = db.TransactionManager.StartTransaction())
+            //        {
+            //            ObjectId objIDbyName = ssbyName[i].ObjectId;
+            //            using (BlockReference oblByName = objIDbyName.Open(OpenMode.ForRead) as BlockReference)
+            //            {
+            //                double objScale = oblByName.ScaleFactors.X;
+            //                double scaleFactor = objScale / oBScale;
+            //                Point2d objPosition = oblByName.Position.Strip();
+            //                Vector2d P1scaleVecto = InP1vector * scaleFactor;
+            //                Vector2d P2scaleVecto = InP2vector * scaleFactor;
 
-                            Point2d PointP1block = objPosition + P1scaleVecto;
-                            Point2d PointP2block = objPosition + P2scaleVecto;
+            //                Point2d PointP1block = objPosition + P1scaleVecto;
+            //                Point2d PointP2block = objPosition + P2scaleVecto;
 
-                            // Create and select a new layout tab
-                            ObjectId id = LayoutManager.Current.CreateAndMakeLayoutCurrent(fulldwgname);
-                            // Open the created layout
-                            Layout lay = (Layout)tr.GetObject(id, OpenMode.ForWrite);
-                            // Make some settings on the layout and get its extents
-                            lay.SetPlotSettings
-                                (
-                                    //"ISO_full_bleed_2A0_(1189.00_x_1682.00_MM)", // Try this big boy!
-                                    "ISO_full_bleed_A1_(841.00_x_594.00_MM)",
-                                    "monochrome.ctb",
-                                    "DWF6 ePlot.pc3"
-                                );
-                            ObjectIdCollection vpsID = lay.GetViewports();
-                            foreach (ObjectId vpID in vpsID)
-                            {
-                                using (Viewport vp  = vpID.Open(OpenMode.ForRead) as Viewport)
-                                {
-                                    int vpNumber = vp.Number;
-                                }
-                            }
-                            ext = lay.GetMaximumExtents();
-                            lay.ApplyToViewport
-                            (
-                                tr,
-                                vp =>
-                                {
-                                    // Size the viewport according to the extents calculated when
-                                    // we set the PlotSettings (device, page size, etc.)
-                                    // Use the standard 10% margin around the viewport
-                                    // (found by measuring pixels on screenshots of Layout1, etc.)
-                                    vp.ResizeViewport(ext, 1);
-                                    // Adjust the view so that the model contents fit
-                                    //if (ValidDbExtents(minPoint3D, maxPoint3D))
-                                    vp.FitContentToViewport(new Extents3d(PointP1block.Pad(), PointP2block.Pad()), 1 / (oblByName.ScaleFactors.X));
-                                    // Finally we lock the view to prevent meddling
-                                    vp.Locked = true;
-                                    vp.Layer = "Defpoints";
-                                }
+            //                // Create and select a new layout tab
+            //                ObjectId id = LayoutManager.Current.CreateAndMakeLayoutCurrent(fulldwgname);
+            //                // Open the created layout
+            //                Layout lay = (Layout)tr.GetObject(id, OpenMode.ForWrite);
+            //                // Make some settings on the layout and get its extents
+            //                lay.SetPlotSettings
+            //                    (
+            //                        //"ISO_full_bleed_2A0_(1189.00_x_1682.00_MM)", // Try this big boy!
+            //                        "ISO_full_bleed_A1_(841.00_x_594.00_MM)",
+            //                        "monochrome.ctb",
+            //                        "DWF6 ePlot.pc3"
+            //                    );
+            //                ObjectIdCollection vpsID = lay.GetViewports();
+            //                foreach (ObjectId vpID in vpsID)
+            //                {
+            //                    using (Viewport vp  = vpID.Open(OpenMode.ForRead) as Viewport)
+            //                    {
+            //                        int vpNumber = vp.Number;
+            //                    }
+            //                }
+            //                ext = lay.GetMaximumExtents();
+            //                lay.ApplyToViewport
+            //                (
+            //                    tr,
+            //                    vp =>
+            //                    {
+            //                        // Size the viewport according to the extents calculated when
+            //                        // we set the PlotSettings (device, page size, etc.)
+            //                        // Use the standard 10% margin around the viewport
+            //                        // (found by measuring pixels on screenshots of Layout1, etc.)
+            //                        vp.ResizeViewport(ext, 1);
+            //                        // Adjust the view so that the model contents fit
+            //                        //if (ValidDbExtents(minPoint3D, maxPoint3D))
+            //                        vp.FitContentToViewport(new Extents3d(PointP1block.Pad(), PointP2block.Pad()), 1 / (oblByName.ScaleFactors.X));
+            //                        // Finally we lock the view to prevent meddling
+            //                        vp.Locked = true;
+            //                        vp.Layer = "Defpoints";
+            //                    }
 
-                            );
+            //                );
 
-                            //Commit the transaction
-                            tr.Commit();
-                        }
-                        // Zoom so that we can see our new layout, again with a little padding
-                        ed.Command("_.ZOOM", "_E");
-                        ed.Regen();
-                    }
+            //                //Commit the transaction
+            //                tr.Commit();
+            //            }
+            //            // Zoom so that we can see our new layout, again with a little padding
+            //            ed.Command("_.ZOOM", "_E");
+            //            ed.Regen();
+            //        }
 
-                }
+            //    }
 
 
-            }
-            catch (Exception)
-            {
-            }
-            #endregion
+            //}
+            //catch (Exception)
+            //{
+            //}
+            //#endregion
         }
+
         // Returns whether the provided DB extents - retrieved from
         // Database.Extmin/max - are "valid" or whether they are the default
         // invalid values (where the min's coordinates are positive and the
@@ -355,5 +357,111 @@ namespace _01_LayoutByXrefBlock
                 max.X < 0 && max.Y < 0 && max.Z < 0);
 
         }
+
+        [DllImport("acad.exe", CallingConvention = CallingConvention.Cdecl,
+        EntryPoint = "?acedSetCurrentVPort@@YA?AW4ErrorStatus@Acad@@PBVAcDbViewport@@@Z")]
+        // ReSharper disable once InconsistentNaming
+        // ReSharper disable once ArrangeModifiersOrder
+        extern static private int acedSetCurrentVPort(IntPtr AcDbVport);
+        [CommandMethod("CreateFloatingViewport")]
+        public static void CreateFloatingViewport()
+        {
+            // Get the current document and database, and start a transaction
+            Document acDoc = Application.DocumentManager.MdiActiveDocument;
+            Database acCurDb = acDoc.Database;
+            Editor ed = acDoc.Editor;
+            LayoutManager layoutManager = LayoutManager.Current;
+            using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+            {
+                // Open the Block table for read
+                BlockTable acBlkTbl = acTrans.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
+                // Open the Block table record Paper space for write
+                BlockTableRecord acBlkTblRec;
+                acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.PaperSpace],
+                    OpenMode.ForWrite) as BlockTableRecord;
+                // Switch to the previous Paper space layout
+                Application.SetSystemVariable("TILEMODE", 0);
+                //acDoc.Editor.SwitchToPaperSpace();
+                // Create a Viewport
+                Extents2d ext = new Extents2d(new Point2d(0,0),new Point2d(841,594));
+                // Create and select a new layout tab
+                ObjectId id = LayoutManager.Current.CreateAndMakeLayoutCurrent("New Layout");
+                
+                // Open the created layout
+                Layout lay = (Layout)acTrans.GetObject(id, OpenMode.ForWrite);
+                
+                // Make some settings on the layout and get its extents
+                lay.SetPlotSettings
+                    (
+                        //"ISO_full_bleed_2A0_(1189.00_x_1682.00_MM)", // Try this big boy!
+                        "ISO_full_bleed_A1_(841.00_x_594.00_MM)",
+                        "monochrome.ctb",
+                        "DWF6 ePlot.pc3"
+                    );
+                BlockTableRecord BlkTblRec = acTrans.GetObject(lay.BlockTableRecordId, OpenMode.ForRead) as BlockTableRecord;
+                foreach (ObjectId ID in BlkTblRec)
+                {
+                    Viewport VP = acTrans.GetObject(ID, OpenMode.ForRead) as Viewport;
+                    if (VP != null)
+                    {
+                        VP.UpgradeOpen();
+                        VP.Erase();
+                    }
+                }
+
+                ObjectIdCollection idCollection = lay.GetViewports();
+                Viewport vpTest = new Viewport();
+                int vpTestNum = vpTest.Number;
+                ObjectId vpNum = default;
+                lay.ApplyToViewport
+                (acTrans, vpTestNum,
+                    vp =>
+                    {
+                        // Size the viewport according to the extents calculated when
+                        // we set the PlotSettings (device, page size, etc.)
+                        // Use the standard 10% margin around the viewport
+                        // (found by measuring pixels on screenshots of Layout1, etc.)
+                        vp.ResizeViewport(ext, 1);
+                        // Adjust the view so that the model contents fit
+                        //if (ValidDbExtents(minPoint3D, maxPoint3D))
+                        vp.FitContentToViewport(new Extents3d(Point3d.Origin, new Point3d(84100, 59400, 0)), 1 / 100);
+                        // Finally we lock the view to prevent meddling
+                        vp.Locked = true;
+                        vpNum = vp.Id;
+                    }
+                );
+                
+                acTrans.Commit();
+                //using (Viewport acVport = new Viewport())
+                //{
+                //    acVport.CenterPoint = new Point3d(0, 0, 0);
+                //    acVport.ViewHeight = 59400;
+                //    acVport.CustomScale = 1 / 100;
+                //    acVport.ViewCenter = new Point2d(420.5, 297);
+                //    acVport.Width = 841;
+                //    acVport.Height = 594;
+                //    acVport.ViewTarget = new Point3d(420500, 29700, 0);
+                //    acVport.SetDatabaseDefaults();
+                //    // Add the new object to the block table record and the transaction
+                //    acBlkTblRec.AppendEntity(acVport);
+                //    acTrans.AddNewlyCreatedDBObject(acVport, true);
+                //    // Change the view direction
+                //    //acVport.ViewDirection = new Vector3d(0, 0, 1);
+                //    // Enable the viewport
+                //    //acVport.On = true;
+                //    // Activate model space in the viewport
+                //    //acDoc.Editor.SwitchToModelSpace();
+                //    // Set the new viewport current via an imported ObjectARX function
+                //    //acedSetCurrentVPort(acVport.UnmanagedObject);
+                //    // Save the new objects to the database
+
+                //        Action<Viewport> f = null;
+                //        if (f != null) f(acVport);
+                //}
+
+            }
+        }
+
+
     }
 }
