@@ -38,6 +38,7 @@ namespace _03_DrawSectionBeam
             for(int i = firstrow; i<= lastrow; i++)
             {
                 string nameBeam = (string)(activeSheet.Cells[i, 2] as Range).Value;
+                string localtion = (string)(activeSheet.Cells[i,3] as Range).Value;
             }    
                 
             using (Transaction Tx = acCurDb.TransactionManager.StartTransaction())
