@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application = Autodesk.AutoCAD.ApplicationServices.Application;
+using Autodesk.AutoCAD.Geometry;
 
 namespace _03_DrawSectionBeam
 {
@@ -32,8 +33,8 @@ namespace _03_DrawSectionBeam
             Excel.Application oExcelApp = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
             Workbook activeWorkbook = oExcelApp.ActiveWorkbook;
             Worksheet activeSheet = activeWorkbook.ActiveSheet;
+            Point2d point2D = new Point2d(0,0);
 
-                
             using (Transaction Tx = acCurDb.TransactionManager.StartTransaction())
             {
                 try
@@ -51,15 +52,19 @@ namespace _03_DrawSectionBeam
                         var top1_Dia = (activeSheet.Cells[i, 18] as Range).Value;
                         BlockTable blockTable = Tx.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
                         BlockTableRecord blkTableRecord = Tx.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
+                        Point2d point2D1 = new Point2d(point2D.X + (i-firstrow)*1000,0);
                         //Specify the Polyline 's coordinates
                         Polyline p1 = new Polyline();
-                        p1.AddVertexAt(0, new Autodesk.AutoCAD.Geometry.Point2d(0, 0), 0, 0, 0);
-                        p1.AddVertexAt(1, new Autodesk.AutoCAD.Geometry.Point2d(width, 0), 0, 0, 0);
-                        p1.AddVertexAt(1, new Autodesk.AutoCAD.Geometry.Point2d(0, height), 0, 0, 0);
-                        p1.AddVertexAt(1, new Autodesk.AutoCAD.Geometry.Point2d(-height, 0), 0, 0, 0);
+                        p1.AddVertexAt(0, new Point2d(point2D1.X, 0), 0, 0, 0);
+                        p1.AddVertexAt(1, new Point2d(point2D1.X + width, 0), 0, 0, 0);
+                        p1.AddVertexAt(2, new Point2d(point2D1.X + width, height), 0, 0, 0);
+                        p1.AddVertexAt(3, new Point2d(point2D1.X, height), 0, 0, 0);
+                        p1.AddVertexAt(4, new Point2d(point2D1.X, 0), 0, 0, 0);
                         p1.SetDatabaseDefaults();
                         blkTableRecord.AppendEntity(p1);
                         Tx.AddNewlyCreatedDBObject(p1, true);
+                        p1.Closed = true;
+                       
                     }
                     Tx.Commit();
                 }
