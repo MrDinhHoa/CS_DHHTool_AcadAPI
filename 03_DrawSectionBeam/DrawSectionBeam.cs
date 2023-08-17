@@ -32,41 +32,41 @@ namespace _03_DrawSectionBeam
             Excel.Application oExcelApp = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
             Workbook activeWorkbook = oExcelApp.ActiveWorkbook;
             Worksheet activeSheet = activeWorkbook.ActiveSheet;
-            Range lastData = activeSheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell, Type.Missing);
-            int firstrow = 37;
-            int lastrow = lastData.Row;
-            for(int i = firstrow; i<= lastrow; i++)
-            {
-                string nameBeam = (string)(activeSheet.Cells[i, 2] as Range).Value;
-                string localtion = (string)(activeSheet.Cells[i,3] as Range).Value;
-            }    
+
                 
             using (Transaction Tx = acCurDb.TransactionManager.StartTransaction())
             {
-                BlockTableRecord bt = Tx.GetObject(acCurDb.CurrentSpaceId, OpenMode.ForRead) as BlockTableRecord;
-
-                foreach (ObjectId id in bt)
+                try
                 {
-                    if (id.ObjectClass.Name != "AcDbOle2Frame")
-                        continue;
-
-                    Ole2Frame oleFrame = Tx.GetObject(id, OpenMode.ForRead) as Ole2Frame;
-
-                    if (!oleFrame.IsLinked)
+                    Range lastData = activeSheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell, Type.Missing);
+                    int firstrow = 37;
+                    int lastrow = lastData.Row;
+                    for (int i = firstrow; i <= lastrow; i++)
                     {
-                        Workbook wb = oleFrame.OleObject as Workbook;
-
-                        Microsoft.Office.Interop.Excel.Worksheet ws = wb.ActiveSheet;
-
-                        Microsoft.Office.Interop.Excel.Range range = ws.UsedRange;
-                        for (int row = 1; row <= 15; row++)
-                        {
-                            for (int col = 1; col <= range.Columns.Count; col++)
-                            {
-                                ed.WriteMessage(String.Format("{0}{1}{2}-{3}", Environment.NewLine, row, col, Convert.ToString((range.Cells[row, col] as Microsoft.Office.Interop.Excel.Range).Value2)));
-                            }
-                        }
+                        string nameBeam = (string)(activeSheet.Cells[i, 2] as Range).Value;
+                        string localtion = (string)(activeSheet.Cells[i, 3] as Range).Value;
+                        var width = (activeSheet.Cells[i, 6] as Range).Value;
+                        var height = (activeSheet.Cells[i, 7] as Range).Value;
+                        var top1_Num = (activeSheet.Cells[i, 17] as Range).Value;
+                        var top1_Dia = (activeSheet.Cells[i, 18] as Range).Value;
+                        BlockTable blockTable = Tx.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
+                        BlockTableRecord blkTableRecord = Tx.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
+                        //Specify the Polyline 's coordinates
+                        Polyline p1 = new Polyline();
+                        p1.AddVertexAt(0, new Autodesk.AutoCAD.Geometry.Point2d(0, 0), 0, 0, 0);
+                        p1.AddVertexAt(1, new Autodesk.AutoCAD.Geometry.Point2d(width, 0), 0, 0, 0);
+                        p1.AddVertexAt(1, new Autodesk.AutoCAD.Geometry.Point2d(0, height), 0, 0, 0);
+                        p1.AddVertexAt(1, new Autodesk.AutoCAD.Geometry.Point2d(-height, 0), 0, 0, 0);
+                        p1.SetDatabaseDefaults();
+                        blkTableRecord.AppendEntity(p1);
+                        Tx.AddNewlyCreatedDBObject(p1, true);
                     }
+                    Tx.Commit();
+                }
+                catch (System.Exception ex)
+                {
+                    ed.WriteMessage("Error: " + ex.Message);
+                    Tx.Abort();
                 }
             }
         }
