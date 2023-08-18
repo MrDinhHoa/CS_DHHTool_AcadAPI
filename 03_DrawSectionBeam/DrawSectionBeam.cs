@@ -33,7 +33,10 @@ namespace _03_DrawSectionBeam
             Excel.Application oExcelApp = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
             Workbook activeWorkbook = oExcelApp.ActiveWorkbook;
             Worksheet activeSheet = activeWorkbook.ActiveSheet;
-            Point2d point2D = new Point2d(0,0);
+            PromptPointOptions ppo = new PromptPointOptions("Select Insert Point: ");
+            PromptPointResult ppR = ed.GetPoint(ppo);
+            Point3d insertPoint3D = ppR.Value;
+            Point2d point2D = new Point2d(insertPoint3D.X,insertPoint3D.Y);
 
             using (Transaction Tx = acCurDb.TransactionManager.StartTransaction())
             {
@@ -42,7 +45,7 @@ namespace _03_DrawSectionBeam
                     Range lastData = activeSheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell, Type.Missing);
                     int firstrow = 37;
                     int lastrow = lastData.Row;
-                    for (int i = firstrow; i <= lastrow; i++)
+                    for (int i = firstrow; i <= 90; i++)
                     {
                         string nameBeam = (string)(activeSheet.Cells[i, 2] as Range).Value;
                         string localtion = (string)(activeSheet.Cells[i, 3] as Range).Value;
