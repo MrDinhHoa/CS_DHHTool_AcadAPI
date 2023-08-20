@@ -37,7 +37,7 @@ namespace _03_DrawSectionBeam
             PromptPointResult ppR = ed.GetPoint(ppo);
             Point3d insertPoint3D = ppR.Value;
             Point2d point2D = new Point2d(insertPoint3D.X,insertPoint3D.Y);
-
+            
             using (Transaction Tx = acCurDb.TransactionManager.StartTransaction())
             {
                 try
@@ -45,7 +45,7 @@ namespace _03_DrawSectionBeam
                     Range lastData = activeSheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell, Type.Missing);
                     int firstrow = 37;
                     int lastrow = lastData.Row;
-                    for (int i = firstrow; i <= 90; i++)
+                    for (int i = firstrow; i <= 50; i++)
                     {
                         string nameBeam = (string)(activeSheet.Cells[i, 2] as Range).Value;
                         string localtion = (string)(activeSheet.Cells[i, 3] as Range).Value;
@@ -54,20 +54,26 @@ namespace _03_DrawSectionBeam
                         var top1_Num = (activeSheet.Cells[i, 17] as Range).Value;
                         var top1_Dia = (activeSheet.Cells[i, 18] as Range).Value;
                         BlockTable blockTable = Tx.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
+                        ObjectId blockId = blockTable["BeamAll"];
                         BlockTableRecord blkTableRecord = Tx.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
-                        Point2d point2D1 = new Point2d(point2D.X + (i-firstrow)*1000,0);
+                       
+                        BlockReference blockReference = new BlockReference(new Point3d(point2D.X + (i - firstrow) * 1000, point2D.Y, 0),blockId);
+                        Point2d point2D1 = new Point2d(point2D.X + (i-firstrow)*1000 + 500-width/2,point2D.Y+1150-height/2);
                         //Specify the Polyline 's coordinates
+                        
                         Polyline p1 = new Polyline();
-                        p1.AddVertexAt(0, new Point2d(point2D1.X, 0), 0, 0, 0);
-                        p1.AddVertexAt(1, new Point2d(point2D1.X + width, 0), 0, 0, 0);
-                        p1.AddVertexAt(2, new Point2d(point2D1.X + width, height), 0, 0, 0);
-                        p1.AddVertexAt(3, new Point2d(point2D1.X, height), 0, 0, 0);
-                        p1.AddVertexAt(4, new Point2d(point2D1.X, 0), 0, 0, 0);
+                        p1.AddVertexAt(0, new Point2d(point2D1.X, point2D1.Y), 0, 0, 0);
+                        p1.AddVertexAt(1, new Point2d(point2D1.X + width, point2D1.Y), 0, 0, 0);
+                        p1.AddVertexAt(2, new Point2d(point2D1.X + width, point2D1.Y+height), 0, 0, 0);
+                        p1.AddVertexAt(3, new Point2d(point2D1.X, point2D1.Y+height), 0, 0, 0);
+                        p1.AddVertexAt(4, new Point2d(point2D1.X, point2D1.Y), 0, 0, 0);
+                        
                         p1.SetDatabaseDefaults();
                         blkTableRecord.AppendEntity(p1);
+                        blkTableRecord.AppendEntity(blockReference);
                         Tx.AddNewlyCreatedDBObject(p1, true);
                         p1.Closed = true;
-                       
+                        Tx.AddNewlyCreatedDBObject(blockReference, true);
                     }
                     Tx.Commit();
                 }
