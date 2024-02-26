@@ -56,10 +56,32 @@ namespace _03_DrawSectionBeam
                         string localtion = (string)(activeSheet.Cells[i, 3] as Range).Value;
                         var width = (activeSheet.Cells[i, 6] as Range).Value;
                         var height = (activeSheet.Cells[i, 7] as Range).Value;
-                        var main1_Num = (activeSheet.Cells[i, 17] as Range).Value;
-                        var main1_Dia = (activeSheet.Cells[i, 18] as Range).Value;
-                        var main2_Num = (activeSheet.Cells[i, 21] as Range).Value;
-                        var main2_Dia = (activeSheet.Cells[i, 22] as Range).Value;
+                        var main1_Num1 = (activeSheet.Cells[i, 17] as Range).Value;
+                        var main1_Dia1 = (activeSheet.Cells[i, 18] as Range).Value;
+                        var main1_Num2 = (activeSheet.Cells[i, 19] as Range).Value;
+                        var main1_Dia2 = (activeSheet.Cells[i, 20] as Range).Value;
+                        double main1_Num = 0;
+                        if(main1_Num2 != null)
+                        {
+                            main1_Num = main1_Num1 + main1_Num2;
+                        }
+                        else
+                        {
+                            main1_Num = main1_Num1;
+                        }
+                        var main2_Num1 = (activeSheet.Cells[i, 21] as Range).Value;
+                        var main2_Dia1 = (activeSheet.Cells[i, 22] as Range).Value;
+                        var main2_Num2 = (activeSheet.Cells[i, 23] as Range).Value;
+                        var main2_Dia2 = (activeSheet.Cells[i, 24] as Range).Value;
+                        double main2_Num = 0;
+                        if (main2_Num2 != null)
+                        {
+                            main2_Num = main2_Num1 + main2_Num2;
+                        }
+                        else
+                        {
+                            main2_Num = main2_Num1;
+                        }
                         BlockTable blockTable = Tx.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
                         BlockTableRecord blkTableRecord = Tx.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
                         #endregion
@@ -175,7 +197,7 @@ namespace _03_DrawSectionBeam
 
                         if (localtion.Contains("ALL") || localtion.Contains("TẤT CẢ"))
                         {
-                            sub_Num = main1_Num;
+                            sub_Num = (activeSheet.Cells[i, 17] as Range).Value;
                         }
                         else if (localtion == "GỐI" || localtion == "END")
                         {
@@ -221,21 +243,118 @@ namespace _03_DrawSectionBeam
                             hookRebar.ColorIndex = 171;
                             blkTableRecord.AppendEntity(hookRebar);
                             Tx.AddNewlyCreatedDBObject(hookRebar, true);
+
+                            Point3d LocationPoint = new Point3d();
+                            LocationPoint = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 50, 0);
+                            using (DBText addRebarText = new DBText())
+                            {
+                                addRebarText.Position = LocationPoint;
+                                addRebarText.VerticalMode = TextVerticalMode.TextVerticalMid;
+                                addRebarText.HorizontalMode = TextHorizontalMode.TextCenter;
+                                addRebarText.AlignmentPoint = LocationPoint;
+                                addRebarText.Height = 50;
+                                addRebarText.WidthFactor = 0.8;
+                                addRebarText.Layer = "S-25Text-VN";
+                                addRebarText.ColorIndex = 1;
+                                addRebarText.TextString = "2T12 - T10a500";
+                                blkTableRecord.AppendEntity(addRebarText);
+                                Tx.AddNewlyCreatedDBObject(addRebarText, true);
+                            }
                         }
 
                         #endregion
-
-                        Point2d point2D2 = new Point2d(point2D1.X +  width / 2, point2D1.Y + height / 2 - 800);
+                        #region Ghi chú thép chính
+                        string MainRebar1A = main1_Num1.ToString() + "T" + main1_Dia1.ToString();
+                        string MainRebar1B;
+                        if(main1_Num2 == null) {MainRebar1B = "";}
+                        else{MainRebar1B = " + " + main1_Num2.ToString() + "T" + main1_Dia2.ToString();}    
+                        string MainRebar2A;
+                        if (main2_Num1 == null) { MainRebar2A = ""; }
+                        else { MainRebar2A = " + " + main2_Num1.ToString() + "T" + main2_Dia1.ToString(); }
+                        string MainRebar2B;
+                        if (main2_Num2 == null) { MainRebar2B = ""; }
+                        else { MainRebar2B = " + " + main2_Num2.ToString() + "T" + main2_Dia2.ToString(); }
+                        string MainRebar = MainRebar1A + MainRebar1B + MainRebar2A + MainRebar2B;
+                        Point3d alingPoint = new Point3d();
+                        if (localtion.Contains("GỐI") || localtion.Contains("END") == true)
+                        { alingPoint = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 350, 0); }
+                        else if (localtion.Contains("NHỊP") || localtion.Contains("SPAN") == true)
+                        { alingPoint = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 250, 0); }
                         using (DBText acText = new DBText())
                         {
-                            acText.Justify = AttachmentPoint.MiddleCenter;
+                            acText.Position = alingPoint;
+                            acText.VerticalMode = TextVerticalMode.TextVerticalMid;
                             acText.HorizontalMode = TextHorizontalMode.TextCenter;
-                            acText.Position = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 350, 0);
+                            acText.AlignmentPoint = alingPoint;
                             acText.Height = 50;
-                            acText.TextString = "Hello, World.";
+                            acText.WidthFactor = 0.8;
+                            acText.Layer = "S-25Text-VN";
+                            acText.ColorIndex = 1;
+                            acText.TextString = MainRebar;
                             blkTableRecord.AppendEntity(acText);
                             Tx.AddNewlyCreatedDBObject(acText, true);
                         }
+                        #endregion
+                        #region Ghi chú thép phụ
+                        double sub_Dia = 0;
+                        if (localtion.Contains("ALL") || localtion.Contains("TẤT CẢ"))
+                        {
+                            sub_Dia = (activeSheet.Cells[i, 18] as Range).Value;
+                        }
+                        else if (localtion == "GỐI" || localtion == "END")
+                        {
+                            sub_Dia = (activeSheet.Cells[i + 1, 18] as Range).Value;
+                        }
+                        else if (localtion == "NHỊP" || localtion == "SPAN")
+                        {
+                            sub_Dia = (activeSheet.Cells[i - 1, 18] as Range).Value;
+                        }
+                        string SubRebar = sub_Num + "T" + sub_Dia;
+                        Point3d alingPoint2 = new Point3d();
+                        if (localtion.Contains("GỐI") || localtion.Contains("END") == true)
+                        { alingPoint2 = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 250, 0); }
+                        else if (localtion.Contains("NHỊP") || localtion.Contains("SPAN") == true)
+                        { alingPoint2 = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 350, 0); }
+                        using (DBText acText2 = new DBText())
+                        {
+                            acText2.Position = alingPoint2;
+                            acText2.VerticalMode = TextVerticalMode.TextVerticalMid;
+                            acText2.HorizontalMode = TextHorizontalMode.TextCenter;
+                            acText2.AlignmentPoint = alingPoint2;
+                            acText2.Height = 50;
+                            acText2.WidthFactor = 0.8;
+                            acText2.Layer = "S-25Text-VN";
+                            acText2.ColorIndex = 1;
+                            acText2.TextString = SubRebar;
+                            blkTableRecord.AppendEntity(acText2);
+                            Tx.AddNewlyCreatedDBObject(acText2, true);
+                        }
+                        #endregion
+                        #region Ghi chú tên dầm
+                        Point3d alingPoint3 = new Point3d();
+                        if (localtion.Contains("ALL") || localtion.Contains("TẤT CẢ") == true)
+                        { alingPoint3 = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 2100, 0); }
+                        else if (localtion == "GỐI" || localtion == "END" )
+                        { alingPoint3 = new Point3d(point2D.X + (i - firstrow) * 1000 + 1000, point2D.Y + 2100, 0); }
+                        if(nameBeam != null)
+                        {
+                            using (DBText acText3 = new DBText())
+                            {
+                                acText3.Position = alingPoint3;
+                                acText3.VerticalMode = TextVerticalMode.TextVerticalMid;
+                                acText3.HorizontalMode = TextHorizontalMode.TextCenter;
+                                acText3.AlignmentPoint = alingPoint3;
+                                acText3.Height = 100;
+                                acText3.WidthFactor = 0.8;
+                                acText3.Layer = "S-25Text-VN";
+                                acText3.ColorIndex = 1;
+                                acText3.TextString = nameBeam;
+                                blkTableRecord.AppendEntity(acText3);
+                                Tx.AddNewlyCreatedDBObject(acText3, true);
+                            }
+                        }    
+                        
+                        #endregion
                     }
                     Tx.Commit();
                 }

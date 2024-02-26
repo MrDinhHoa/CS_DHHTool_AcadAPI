@@ -64,6 +64,6 @@ D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcWindows.resources.dll
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.csproj.AssemblyReference.cache
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.csproj.CoreCompileInputs.cache
-D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.csproj.CopyComplete
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.dll
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.pdb
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawS.F69D78FD.Up2Date
