@@ -17,7 +17,7 @@ namespace _03_DrawSectionBeam
     public class DrawSectionBeam
     {
 
-        [CommandMethod("drawSectionbeam")]
+        [CommandMethod("MCNgang")]
         [Obsolete]
         public static void drawSectionbeam()
         {
@@ -62,26 +62,19 @@ namespace _03_DrawSectionBeam
                         var main1_Dia2 = (activeSheet.Cells[i, 20] as Range).Value;
                         double main1_Num = 0;
                         if(main1_Num2 != null)
-                        {
-                            main1_Num = main1_Num1 + main1_Num2;
-                        }
-                        else
-                        {
-                            main1_Num = main1_Num1;
-                        }
+                        {main1_Num = main1_Num1 + main1_Num2;}
+                        else {main1_Num = main1_Num1;}
                         var main2_Num1 = (activeSheet.Cells[i, 21] as Range).Value;
                         var main2_Dia1 = (activeSheet.Cells[i, 22] as Range).Value;
                         var main2_Num2 = (activeSheet.Cells[i, 23] as Range).Value;
                         var main2_Dia2 = (activeSheet.Cells[i, 24] as Range).Value;
                         double main2_Num = 0;
                         if (main2_Num2 != null)
-                        {
-                            main2_Num = main2_Num1 + main2_Num2;
-                        }
-                        else
-                        {
-                            main2_Num = main2_Num1;
-                        }
+                        {main2_Num = main2_Num1 + main2_Num2;}
+                        else {main2_Num = main2_Num1;}
+                        var stirrup_Dia = (activeSheet.Cells[i, 8] as Range).Value;
+                        var stirrup_Num = (activeSheet.Cells[i, 9] as Range).Value;
+                        var stirrup_Dis = (activeSheet.Cells[i, 10] as Range).Value;
                         BlockTable blockTable = Tx.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
                         BlockTableRecord blkTableRecord = Tx.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
                         #endregion
@@ -352,8 +345,29 @@ namespace _03_DrawSectionBeam
                                 blkTableRecord.AppendEntity(acText3);
                                 Tx.AddNewlyCreatedDBObject(acText3, true);
                             }
-                        }    
-                        
+                        }
+
+                        #endregion
+                        #region Ghi chú thép đai
+                        string stirrupRebar;
+                        if(stirrup_Dia < 9) {stirrupRebar = "R" + stirrup_Dia + "a" + stirrup_Dis;}  
+                        else { stirrupRebar = "T" + stirrup_Dia + "a" + stirrup_Dis; }
+                        Point3d LocationPointStirrup = new Point3d();
+                        LocationPointStirrup = new Point3d(point2D.X + (i - firstrow) * 1000 + 500, point2D.Y + 150, 0);
+                        using (DBText stirRebarText = new DBText())
+                        {
+                            stirRebarText.Position = LocationPointStirrup;
+                            stirRebarText.VerticalMode = TextVerticalMode.TextVerticalMid;
+                            stirRebarText.HorizontalMode = TextHorizontalMode.TextCenter;
+                            stirRebarText.AlignmentPoint = LocationPointStirrup;
+                            stirRebarText.Height = 50;
+                            stirRebarText.WidthFactor = 0.8;
+                            stirRebarText.Layer = "S-25Text-VN";
+                            stirRebarText.ColorIndex = 1;
+                            stirRebarText.TextString = stirrupRebar;
+                            blkTableRecord.AppendEntity(stirRebarText);
+                            Tx.AddNewlyCreatedDBObject(stirRebarText, true);
+                        }
                         #endregion
                     }
                     Tx.Commit();
