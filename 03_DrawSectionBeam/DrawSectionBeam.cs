@@ -69,9 +69,16 @@ namespace _03_DrawSectionBeam
                         var main2_Num2 = (activeSheet.Cells[i, 23] as Range).Value;
                         var main2_Dia2 = (activeSheet.Cells[i, 24] as Range).Value;
                         double main2_Num = 0;
-                        if (main2_Num2 != null)
-                        {main2_Num = main2_Num1 + main2_Num2;}
-                        else {main2_Num = main2_Num1;}
+                        if(main2_Num1 !=null)
+                        {
+                            if (main2_Num2 != null)
+                            { main2_Num = main2_Num1 + main2_Num2; }
+                            else { main2_Num = main2_Num1; }
+                        }    
+                        else if (main2_Num1 == null)
+                        {
+                            main2_Num = 0;
+                        }    
                         var stirrup_Dia = (activeSheet.Cells[i, 8] as Range).Value;
                         var stirrup_Num = (activeSheet.Cells[i, 9] as Range).Value;
                         var stirrup_Dis = (activeSheet.Cells[i, 10] as Range).Value;
@@ -153,21 +160,21 @@ namespace _03_DrawSectionBeam
                         #endregion
                         #region Vẽ thép chủ lớp 2 - Chịu kéo
                         double fullLayer2Main = width - 2 * (cover + fillet);
-                        double disLayer2Main = fullLayer2Main / (main2_Num - 1);
-                        for (int j = 1; j < main2_Num + 1;)
-                        {
-                            double tieBarInsMain2 = 0;
-                            if (localtion.Contains("GỐI") || localtion.Contains("END") == true)
-                            { tieBarInsMain2 = point2D1.Y + height - cover - fillet -50; }
-                            else if (localtion.Contains("NHỊP") || localtion.Contains("SPAN") == true)
-                            { tieBarInsMain2 = point2D1.Y + cover + fillet +50; }
-                            BlockReference layer2Bar = new BlockReference(new Point3d(point2D1.X + cover + fillet + disLayer2Main * (j - 1), tieBarInsMain2, 0), tiebarId);
-                            blkTableRecord.AppendEntity(layer2Bar);
-                            Tx.AddNewlyCreatedDBObject(layer2Bar, true);
-                            j++;
-                        }
                         if(main2_Num > 2)
                         {
+                            double disLayer2Main = fullLayer2Main / (main2_Num - 1);
+                            for (int j = 1; j < main2_Num + 1;)
+                            {
+                                double tieBarInsMain2 = 0;
+                                if (localtion.Contains("GỐI") || localtion.Contains("END") == true)
+                                { tieBarInsMain2 = point2D1.Y + height - cover - fillet - 50; }
+                                else if (localtion.Contains("NHỊP") || localtion.Contains("SPAN") == true)
+                                { tieBarInsMain2 = point2D1.Y + cover + fillet + 50; }
+                                BlockReference layer2Bar = new BlockReference(new Point3d(point2D1.X + cover + fillet + disLayer2Main * (j - 1), tieBarInsMain2, 0), tiebarId);
+                                blkTableRecord.AppendEntity(layer2Bar);
+                                Tx.AddNewlyCreatedDBObject(layer2Bar, true);
+                                j++;
+                            }
                             Polyline hookRebarforMain2 = new Polyline();
                             if(localtion.Contains("GỐI") || localtion.Contains("END"))
                             {
@@ -286,6 +293,7 @@ namespace _03_DrawSectionBeam
                             acText.TextString = MainRebar;
                             blkTableRecord.AppendEntity(acText);
                             Tx.AddNewlyCreatedDBObject(acText, true);
+
                         }
                         #endregion
                         #region Ghi chú thép phụ
