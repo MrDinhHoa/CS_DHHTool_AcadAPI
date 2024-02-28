@@ -16,7 +16,7 @@ namespace _03_DrawSectionBeam
 {
     public class DrawSectionBeam
     {
-
+        static double defaultDistance = 0.5;
         [CommandMethod("MCNgang")]
         [Obsolete]
         public static void drawSectionbeam()
@@ -25,13 +25,30 @@ namespace _03_DrawSectionBeam
             Document acDoc = Application.DocumentManager.MdiActiveDocument;
             Database acCurDb = acDoc.Database;
             Editor ed = acDoc.Editor;
+
+            PromptSelectionOptions pso = new PromptSelectionOptions();
+            pso.MessageForAdding = "\nSelect entities or [DIstance]: ";
+            pso.SetKeywords("[DIstance]", "Distance");
+            // handle the KeywordInput event
+            pso.KeywordInput += (s, e) =>
+            {
+                if (e.Input == "Distance")
+                {
+                    var pdo = new PromptDistanceOptions("\nDefault distance: ");
+                    pdo.DefaultValue = defaultDistance;
+                    pdo.UseDefaultValue = true;
+                    var pdr = ed.GetDistance(pdo);
+                    if (pdr.Status != PromptStatus.OK)
+                        return;
+                    defaultDistance = pdr.Value;
+                }
+            };
             //PromptKeywordOptions excelOption = new PromptKeywordOptions("Select/All: ");
             //excelOption.Keywords.Add("Select");
             //excelOption.Keywords.Add("All");
             //excelOption.AllowNone = false;
-            PromptIntegerOptions promptDouble = new PromptIntegerOptions("Nhập dòng cuối cùng: ");
+            PromptIntegerOptions promptDouble = new PromptIntegerOptions("\nNhập dòng cuối cùng: ");
             PromptIntegerResult lastRowNumber = ed.GetInteger(promptDouble);
-            
             //PromptResult result = ed.GetKeywords(excelOption);
             Excel.Application oExcelApp = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
             Workbook activeWorkbook = oExcelApp.ActiveWorkbook;
@@ -160,9 +177,9 @@ namespace _03_DrawSectionBeam
                         #endregion
                         #region Vẽ thép chủ lớp 2 - Chịu kéo
                         double fullLayer2Main = width - 2 * (cover + fillet);
-                        if(main2_Num > 2)
+                        double disLayer2Main = fullLayer2Main / (main2_Num - 1);
+                        if (main2_Num >= 2)
                         {
-                            double disLayer2Main = fullLayer2Main / (main2_Num - 1);
                             for (int j = 1; j < main2_Num + 1;)
                             {
                                 double tieBarInsMain2 = 0;
@@ -175,6 +192,9 @@ namespace _03_DrawSectionBeam
                                 Tx.AddNewlyCreatedDBObject(layer2Bar, true);
                                 j++;
                             }
+                        }
+                        if (main2_Num > 2)
+                        {
                             Polyline hookRebarforMain2 = new Polyline();
                             if(localtion.Contains("GỐI") || localtion.Contains("END"))
                             {

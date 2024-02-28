@@ -1,0 +1,6 @@
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\00_TestCommand\bin\Debug\00_TestCommand.dll
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\00_TestCommand\bin\Debug\00_TestCommand.pdb
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\00_TestCommand\obj\Debug\00_TestCommand.csproj.AssemblyReference.cache
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\00_TestCommand\obj\Debug\00_TestCommand.csproj.CoreCompileInputs.cache
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\00_TestCommand\obj\Debug\00_TestCommand.dll
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\00_TestCommand\obj\Debug\00_TestCommand.pdb
