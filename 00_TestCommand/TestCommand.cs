@@ -111,7 +111,7 @@ namespace _00_TestCommand
             Document dwg = Application.DocumentManager.MdiActiveDocument;
             Editor ed = dwg.Editor;
 
-            int val = 0;
+            int giatri = 0;
             ObjectId pickedId = ObjectId.Null;
 
             while (true)
@@ -142,7 +142,7 @@ namespace _00_TestCommand
                     }
                     else
                     {
-                        val = 30;
+                        giatri = 30;
                     }
                 }
                 else

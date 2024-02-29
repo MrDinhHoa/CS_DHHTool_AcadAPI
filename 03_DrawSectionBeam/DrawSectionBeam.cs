@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application = Autodesk.AutoCAD.ApplicationServices.Application;
 using Autodesk.AutoCAD.Geometry;
+using System.Windows;
 
 namespace _03_DrawSectionBeam
 {
@@ -26,35 +27,56 @@ namespace _03_DrawSectionBeam
             Database acCurDb = acDoc.Database;
             Editor ed = acDoc.Editor;
 
-            PromptSelectionOptions pso = new PromptSelectionOptions();
-            pso.MessageForAdding = "\nSelect entities or [DIstance]: ";
-            pso.SetKeywords("[DIstance]", "Distance");
-            // handle the KeywordInput event
-            pso.KeywordInput += (s, e) =>
-            {
-                if (e.Input == "Distance")
-                {
-                    var pdo = new PromptDistanceOptions("\nDefault distance: ");
-                    pdo.DefaultValue = defaultDistance;
-                    pdo.UseDefaultValue = true;
-                    var pdr = ed.GetDistance(pdo);
-                    if (pdr.Status != PromptStatus.OK)
-                        return;
-                    defaultDistance = pdr.Value;
-                }
-            };
+            //PromptSelectionOptions pso = new PromptSelectionOptions();
+            //pso.MessageForAdding = "\nSelect entities or [DIstance]: ";
+            //pso.SetKeywords("[DIstance]", "Distance");
+            //// handle the KeywordInput event
+            //pso.KeywordInput += (s, e) =>
+            //{
+            //    if (e.Input == "Distance")
+            //    {
+            //        var pdo = new PromptDistanceOptions("\nDefault distance: ");
+            //        pdo.DefaultValue = defaultDistance;
+            //        pdo.UseDefaultValue = true;
+            //        var pdr = ed.GetDistance(pdo);
+            //        if (pdr.Status != PromptStatus.OK)
+            //            return;
+            //        defaultDistance = pdr.Value;
+            //    }
+            //};
             //PromptKeywordOptions excelOption = new PromptKeywordOptions("Select/All: ");
             //excelOption.Keywords.Add("Select");
             //excelOption.Keywords.Add("All");
             //excelOption.AllowNone = false;
-            PromptIntegerOptions promptDouble = new PromptIntegerOptions("\nNhập dòng cuối cùng: ");
+            PromptIntegerOptions promptDouble = new PromptIntegerOptions("\nEnter last row or: ");
+            promptDouble.Keywords.Add("Setting");
             PromptIntegerResult lastRowNumber = ed.GetInteger(promptDouble);
-            //PromptResult result = ed.GetKeywords(excelOption);
+            int firstrow = 37;
+            int lastrow = 40;
+            if (lastRowNumber.Status == PromptStatus.OK)
+            {
+                lastrow = lastRowNumber.Value;
+            }    
+            else if (lastRowNumber.Status == PromptStatus.Keyword)
+            {
+                MessageBox.Show("Test Promt", "Test hàng", MessageBoxButton.OK);
+                lastrow = 50;
+                MessageBox.Show(lastrow.ToString(), "Test", MessageBoxButton.OK);
+            }
+            
+            
+             
             Excel.Application oExcelApp = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
             Workbook activeWorkbook = oExcelApp.ActiveWorkbook;
             Worksheet activeSheet = activeWorkbook.ActiveSheet;
-            PromptPointOptions ppo = new PromptPointOptions("Select Insert Point: ");
+            PromptPointOptions ppo = new PromptPointOptions("\nSelect Insert Point or");
+            ppo.Keywords.Add("Setting");
+            ppo.AppendKeywordsToMessage = false;
             PromptPointResult ppR = ed.GetPoint(ppo);
+            if (ppR.Status == PromptStatus.Keyword)
+            {
+                MessageBox.Show("Test Promt","Test hàng",MessageBoxButton.OK);
+            }    
             Point3d insertPoint3D = ppR.Value;
             Point2d point2D = new Point2d(insertPoint3D.X,insertPoint3D.Y);
             double cover = 25;
@@ -64,8 +86,7 @@ namespace _03_DrawSectionBeam
                 try
                 {
                     Range lastData = activeSheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell, Type.Missing);
-                    int firstrow = 37;
-                    int lastrow = lastRowNumber.Value; 
+
                     for (int i = firstrow; i <= lastrow; i++)
                     {
                         #region Lấy dữ liệu từ file excel
