@@ -17,16 +17,13 @@ namespace _03_DrawSectionBeam
 {
     public class DrawSectionBeam
     {
-        static double defaultDistance = 0.5;
+        static int BeamColumn = 2;
         [CommandMethod("MCNgang")]
         [Obsolete]
         public static void drawSectionbeam()
         {
-            // Get the current document and database
-            Document acDoc = Application.DocumentManager.MdiActiveDocument;
-            Database acCurDb = acDoc.Database;
-            Editor ed = acDoc.Editor;
-
+            
+            #region Tham khảo
             //PromptSelectionOptions pso = new PromptSelectionOptions();
             //pso.MessageForAdding = "\nSelect entities or [DIstance]: ";
             //pso.SetKeywords("[DIstance]", "Distance");
@@ -48,35 +45,41 @@ namespace _03_DrawSectionBeam
             //excelOption.Keywords.Add("Select");
             //excelOption.Keywords.Add("All");
             //excelOption.AllowNone = false;
+            #endregion
+            #region Get the current document and database
+            Document acDoc = Application.DocumentManager.MdiActiveDocument;
+            Database acCurDb = acDoc.Database;
+            Editor ed = acDoc.Editor;
+            #endregion
+            
             PromptIntegerOptions promptDouble = new PromptIntegerOptions("\nEnter last row or: ");
             promptDouble.Keywords.Add("Setting");
             PromptIntegerResult lastRowNumber = ed.GetInteger(promptDouble);
             int firstrow = 37;
             int lastrow = 40;
+
+
             if (lastRowNumber.Status == PromptStatus.OK)
             {
                 lastrow = lastRowNumber.Value;
             }    
             else if (lastRowNumber.Status == PromptStatus.Keyword)
             {
-                MessageBox.Show("Test Promt", "Test hàng", MessageBoxButton.OK);
-                lastrow = 50;
-                MessageBox.Show(lastrow.ToString(), "Test", MessageBoxButton.OK);
+                PromptIntegerOptions promptName = new PromptIntegerOptions("\nColumn of Beam Name: ");
+                promptName.UseDefaultValue = true;
+                PromptIntegerResult promptNameResult = ed.GetInteger(promptName);
+                BeamColumn = promptNameResult.Value;
+
             }
-            
-            
-             
+            MessageBox.Show(BeamColumn.ToString(), "Test", MessageBoxButton.OK);
+
             Excel.Application oExcelApp = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
             Workbook activeWorkbook = oExcelApp.ActiveWorkbook;
             Worksheet activeSheet = activeWorkbook.ActiveSheet;
             PromptPointOptions ppo = new PromptPointOptions("\nSelect Insert Point or");
             ppo.Keywords.Add("Setting");
             ppo.AppendKeywordsToMessage = false;
-            PromptPointResult ppR = ed.GetPoint(ppo);
-            if (ppR.Status == PromptStatus.Keyword)
-            {
-                MessageBox.Show("Test Promt","Test hàng",MessageBoxButton.OK);
-            }    
+            PromptPointResult ppR = ed.GetPoint(ppo); 
             Point3d insertPoint3D = ppR.Value;
             Point2d point2D = new Point2d(insertPoint3D.X,insertPoint3D.Y);
             double cover = 25;
