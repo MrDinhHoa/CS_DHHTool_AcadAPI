@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1C9CE28C-446D-46AF-9184-324E1DE4E6EC}|02_TextByCoordinate\\02_TextByCoordinate.csproj|d:\\study\\programming\\c-sharp\\08.cs_dhhtool_acadapi\\02_textbycoordinate\\textbycoordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C9CE28C-446D-46AF-9184-324E1DE4E6EC}|02_TextByCoordinate\\02_TextByCoordinate.csproj|solutionrelative:02_textbycoordinate\\textbycoordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{82F58CD1-B3B1-472E-ABDD-D27092F619DF}|03_DrawSectionBeam\\03_DrawSectionBeam.csproj|d:\\study\\programming\\c-sharp\\08.cs_dhhtool_acadapi\\03_drawsectionbeam\\drawsectionbeam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{82F58CD1-B3B1-472E-ABDD-D27092F619DF}|03_DrawSectionBeam\\03_DrawSectionBeam.csproj|solutionrelative:03_drawsectionbeam\\drawsectionbeam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,21 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "TextByCoordinate.cs",
+              "DocumentMoniker": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\02_TextByCoordinate\\TextByCoordinate.cs",
+              "RelativeDocumentMoniker": "02_TextByCoordinate\\TextByCoordinate.cs",
+              "ToolTip": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\02_TextByCoordinate\\TextByCoordinate.cs",
+              "RelativeToolTip": "02_TextByCoordinate\\TextByCoordinate.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-14T12:24:34.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "DrawSectionBeam.cs",
               "DocumentMoniker": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\03_DrawSectionBeam\\DrawSectionBeam.cs",
               "RelativeDocumentMoniker": "03_DrawSectionBeam\\DrawSectionBeam.cs",
               "ToolTip": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\03_DrawSectionBeam\\DrawSectionBeam.cs",
               "RelativeToolTip": "03_DrawSectionBeam\\DrawSectionBeam.cs",
-              "ViewState": "AQIAAOAAAAAAAAAAAAAiwPcAAABXAAAA",
+              "ViewState": "AQIAALkAAAAAAAAAAAAgwLYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-26T12:51:30.397Z",
               "EditorCaption": ""
