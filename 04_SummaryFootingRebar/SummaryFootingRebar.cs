@@ -32,7 +32,6 @@ namespace _04_SummaryFootingRebar
             PromptStringOptions pStFootSize = new PromptStringOptions("\nKích thước móng (BxHxW):");
             PromptResult pStFootSizeResult = ed.GetString(pStFootSize);
             string footSizeStr = pStFootSizeResult.StringResult;
-            footSizeStr.
             MessageBox.Show(pStFootSizeResult.ToString());
             #endregion
 
