@@ -40,6 +40,9 @@
     <Reference Include="acmgd">
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2023\acmgd.dll</HintPath>
     </Reference>
+    <Reference Include="BIMSoftLib">
+      <HintPath>..\..\00.CS_Library\BIMSoftLib.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RebarSlabInfor.cs" />
     <Compile Include="UpdateNumberRebarSlab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

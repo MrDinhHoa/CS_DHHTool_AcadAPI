@@ -1,8 +1,5 @@
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\01_LayoutByXrefBlock.dll
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\01_LayoutByXrefBlock.pdb
-D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\accoremgd.dll
-D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\acdbmgd.dll
-D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\acmgd.dll
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\AdUiPalettes.dll
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\AcDx.dll
 D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\01_LayoutByXrefBlock\bin\Debug\AcDxPublishUi.dll

@@ -34,3 +34,40 @@ D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\De
 D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_UpdateNumberRebarSlab.csproj.CopyComplete
 D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_UpdateNumberRebarSlab.dll
 D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_UpdateNumberRebarSlab.pdb
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\05_UpdateNumberRebarSlab.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\05_UpdateNumberRebarSlab.pdb
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\accoremgd.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\acdbmgd.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\acmgd.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AdUiPalettes.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcDx.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcDxPublishUi.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AdWindows.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcCui.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcCustomize.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AppHomeInterop.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcMr.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcWindows.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AdUIMgd.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcTcMgd.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\AcMNUParser.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\Autodesk.AutoCAD.Interop.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\Autodesk.DesktopConnector.API.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\Newtonsoft.Json.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\Serilog.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\Serilog.Sinks.File.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\Autodesk.AutoCAD.Interop.Common.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\acdbmgd.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\AcDx.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\AcDxPublishUi.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\AdWindows.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\AcCustomize.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\AppHomeInterop.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\AcMr.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\en-US\AcWindows.resources.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_UpdateNumberRebarSlab.csproj.AssemblyReference.cache
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_UpdateNumberRebarSlab.csproj.CoreCompileInputs.cache
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_Updat.58143203.Up2Date
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_UpdateNumberRebarSlab.dll
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\obj\Debug\05_UpdateNumberRebarSlab.pdb
+D:\STUDY\Programming\C-Sharp\08.CS_DHHTool_AcadAPI\05_UpdateNumberRebarSlab\bin\Debug\BIMSoftLib.dll
