@@ -1,6 +1,0 @@
-D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05A_UpdateTKThepSan\bin\Debug\05A_UpdateTKThepSan.dll
-D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05A_UpdateTKThepSan\bin\Debug\05A_UpdateTKThepSan.pdb
-D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05A_UpdateTKThepSan\obj\Debug\05A_UpdateTKThepSan.csproj.AssemblyReference.cache
-D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05A_UpdateTKThepSan\obj\Debug\05A_UpdateTKThepSan.csproj.CoreCompileInputs.cache
-D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05A_UpdateTKThepSan\obj\Debug\05A_UpdateTKThepSan.dll
-D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\05A_UpdateTKThepSan\obj\Debug\05A_UpdateTKThepSan.pdb

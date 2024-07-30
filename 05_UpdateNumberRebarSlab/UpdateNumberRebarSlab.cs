@@ -50,11 +50,9 @@ namespace _05_UpdateNumberRebarSlab
                             double D3 = 0;
                             foreach (ObjectId objectId1 in att)
                             {
-
                                 using (AttributeReference attRef = objectId1.Open(OpenMode.ForRead) as AttributeReference)
                                 {
                                     string tag = attRef.Tag;
-
                                     switch (tag)
                                     {
                                         case "0":
@@ -168,8 +166,14 @@ namespace _05_UpdateNumberRebarSlab
                                         {
                                             switch (Tag)
                                             {
+                                                case "D2":
+                                                    attRef.TextString = listRebarInfor[i].D2;
+                                                    break;
                                                 case "D1":
                                                     attRef.TextString = listRebarInfor[i].D1;
+                                                    break;
+                                                case "D3":
+                                                    attRef.TextString = listRebarInfor[i].D3;
                                                     break;
                                                 case "NO":
                                                     attRef.TextString = listRebarInfor[i].NO;
@@ -189,7 +193,6 @@ namespace _05_UpdateNumberRebarSlab
                                                 case "LA":
                                                     attRef.TextString = listRebarInfor[i].LA;
                                                     break;
-
                                             }
                                         }
                                         blockRef.AttributeCollection.AppendAttribute(attRef);
