@@ -68,15 +68,24 @@ namespace _05_UpdateNumberRebarSlab
 
                                             break;
                                         case "2":
-                                            rebarSlabInfor.D1 = attRef.TextString.Substring(0, attRef.TextString.IndexOf("."));
+                                            string Tag2string = attRef.TextString;
+                                            if (Tag2string.Contains("."))
+                                            { rebarSlabInfor.D1 = attRef.TextString.Substring(0, attRef.TextString.IndexOf(".")); }
+                                            else { rebarSlabInfor.D1 = attRef.TextString; }
                                             D1 = Convert.ToDouble(attRef.TextString);
                                             break;
                                         case "3":
-                                            rebarSlabInfor.D2 = attRef.TextString.Substring(0, attRef.TextString.IndexOf("."));
+                                            string Tag3string = attRef.TextString;
+                                            if (Tag3string.Contains("."))
+                                            { rebarSlabInfor.D2 = attRef.TextString.Substring(0, attRef.TextString.IndexOf(".")); }
+                                            else { rebarSlabInfor.D2 = attRef.TextString; }
                                             D2 = Convert.ToDouble(attRef.TextString);
                                             break;
                                         case "4":
-                                            rebarSlabInfor.D3 = attRef.TextString.Substring(0, attRef.TextString.IndexOf("."));
+                                            string Tag4string = attRef.TextString;
+                                            if (Tag4string.Contains("."))
+                                            { rebarSlabInfor.D3 = attRef.TextString.Substring(0, attRef.TextString.IndexOf(".")); }
+                                            else { rebarSlabInfor.D3 = attRef.TextString; }
                                             D3 = Convert.ToDouble(attRef.TextString);
                                             break;
                                         // Xu ly so Lieu
@@ -98,16 +107,21 @@ namespace _05_UpdateNumberRebarSlab
 
                     }
                 }
-
-                for (int i = 0; i < listRebarInfor.Count; i++)
+                var SortListQuery = listRebarInfor.OrderBy(x => x.NO);
+                List<RebarSlabInfor> sortList = SortListQuery.ToList();
+                for (int i = 0; i < sortList.Count; i++)
                 {
                     #region Transaction
                     using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
                     {
-
                         string blockName = null;
-                        if (listRebarInfor[i].D2 == "" || listRebarInfor[i].D2 == null || listRebarInfor[i].D2 == "0")
+
+                        if ((listRebarInfor[i].D2 == "" || listRebarInfor[i].D2 == null || listRebarInfor[i].D2 == "0")
+                            && ((listRebarInfor[i].D3 == "" || listRebarInfor[i].D3 == null || listRebarInfor[i].D3 == "0")))
                         { blockName = "TKCot_01a"; }
+                        else if ((listRebarInfor[i].D2 == "" || listRebarInfor[i].D2 == null || listRebarInfor[i].D2 == "0"
+                                 || listRebarInfor[i].D3 == "" || listRebarInfor[i].D3 == null || listRebarInfor[i].D3 == "0"))
+                        { blockName = "TKCot_01b"; }
                         else { blockName = "TKCot_01c"; }
                         BlockTable bt = acCurDb.BlockTableId.GetObject(OpenMode.ForRead) as BlockTable;
                         BlockTableRecord blockDef = bt[blockName].GetObject(OpenMode.ForRead) as BlockTableRecord;
@@ -128,18 +142,18 @@ namespace _05_UpdateNumberRebarSlab
                                     {
                                         string Tag = attDef.Tag;
                                         attRef.SetAttributeFromBlock(attDef, blockRef.BlockTransform);
-                                        if (blockName == "TKCot_01c")
+                                        if (blockName == "TKCot_01b")
                                         {
                                             switch (Tag)
                                             {
-                                                case "D2":
-                                                    attRef.TextString = listRebarInfor[i].D2;
-                                                    break;
-                                                case "D1":
+                                                case "D2": //Case kich thuoc chinh
                                                     attRef.TextString = listRebarInfor[i].D1;
                                                     break;
-                                                case "D3":
-                                                    attRef.TextString = listRebarInfor[i].D3;
+                                                case "D1": // Case kich thuoc phu 1
+                                                    if (listRebarInfor[i].D2 == "0")
+                                                    { attRef.TextString = listRebarInfor[i].D3; }
+                                                    else
+                                                    { attRef.TextString = listRebarInfor[i].D2; }
                                                     break;
                                                 case "NO":
                                                     attRef.TextString = listRebarInfor[i].NO;
@@ -159,7 +173,6 @@ namespace _05_UpdateNumberRebarSlab
                                                 case "LA":
                                                     attRef.TextString = listRebarInfor[i].LA;
                                                     break;
-
                                             }
                                         }
                                         else
