@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.10.35013.160
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_LayoutByXrefBlock", "01_LayoutByXrefBlock\01_LayoutByXrefBlock.csproj", "{4570FCF4-C1F4-407D-8495-E9E5D4F325E5}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_SummaryFootingRebar", "04_SummaryFootingRebar\04_SummaryFootingRebar.csproj", "{A9C13D94-6B3A-4827-98C0-83D50E53DBEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_UpdateNumberRebarSlab", "05_UpdateNumberRebarSlab\05_UpdateNumberRebarSlab.csproj", "{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_ChangBlockPMToDCE", "06_ChangBlockPMToDCE\06_ChangBlockPMToDCE.csproj", "{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

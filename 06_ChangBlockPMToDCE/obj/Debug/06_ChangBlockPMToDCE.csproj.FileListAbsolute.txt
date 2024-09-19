@@ -1,0 +1,8 @@
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\obj\Debug\06_ChangBlockPMToDCE.csproj.AssemblyReference.cache
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\obj\Debug\06_ChangBlockPMToDCE.csproj.CoreCompileInputs.cache
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\bin\Debug\06_ChangBlockPMToDCE.dll
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\bin\Debug\06_ChangBlockPMToDCE.pdb
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\obj\Debug\06_ChangBlockPMToDCE.dll
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\obj\Debug\06_ChangBlockPMToDCE.pdb
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\bin\Debug\BIMSoftLib.dll
+D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\06_ChangBlockPMToDCE\obj\Debug\06_ChangBlockPMToDCE.csproj.CopyComplete
