@@ -88,6 +88,7 @@ namespace _06_ChangBlockPMToDCE
                                 #endregion
                                 #region Lấy các Attribute khác nhau
                                 var attDiffer = oBlock.AttributeCollection;
+
                                 switch (blockRebarInfor.BlockName)
                                 {
                                     case "TKCot_01a":
