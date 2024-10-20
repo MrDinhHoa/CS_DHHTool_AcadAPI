@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RebarSlabInfor.cs" />
+    <Compile Include="StringCompare.cs" />
     <Compile Include="UpdateNumberRebarSlab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

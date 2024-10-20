@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}|06_ChangBlockPMToDCE\\06_ChangBlockPMToDCE.csproj|d:\\study\\programming\\c-sharp\\08.cs_dhhtool_acadapi\\06_changblockpmtodce\\changblocktodce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}|06_ChangBlockPMToDCE\\06_ChangBlockPMToDCE.csproj|solutionrelative:06_changblockpmtodce\\changblocktodce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}|06_ChangBlockPMToDCE\\06_ChangBlockPMToDCE.csproj|d:\\study\\programming\\c-sharp\\08.cs_dhhtool_acadapi\\06_changblockpmtodce\\stringcompare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}|06_ChangBlockPMToDCE\\06_ChangBlockPMToDCE.csproj|solutionrelative:06_changblockpmtodce\\stringcompare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StringCompare.cs",
+              "DocumentMoniker": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\06_ChangBlockPMToDCE\\StringCompare.cs",
+              "RelativeDocumentMoniker": "06_ChangBlockPMToDCE\\StringCompare.cs",
+              "ToolTip": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\06_ChangBlockPMToDCE\\StringCompare.cs",
+              "RelativeToolTip": "06_ChangBlockPMToDCE\\StringCompare.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T11:55:23.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChangBlockToDCE.cs",
+              "DocumentMoniker": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\06_ChangBlockPMToDCE\\ChangBlockToDCE.cs",
+              "RelativeDocumentMoniker": "06_ChangBlockPMToDCE\\ChangBlockToDCE.cs",
+              "ToolTip": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\06_ChangBlockPMToDCE\\ChangBlockToDCE.cs*",
+              "RelativeToolTip": "06_ChangBlockPMToDCE\\ChangBlockToDCE.cs*",
+              "ViewState": "AgIAABsAAAAAAAAAAAAUwOMAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T08:05:29.228Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

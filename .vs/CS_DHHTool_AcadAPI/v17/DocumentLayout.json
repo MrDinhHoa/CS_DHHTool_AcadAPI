@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}|05_UpdateNumberRebarSlab\\05_UpdateNumberRebarSlab.csproj|d:\\study\\programming\\c-sharp\\08.cs_dhhtool_acadapi\\05_updatenumberrebarslab\\updatenumberrebarslab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}|05_UpdateNumberRebarSlab\\05_UpdateNumberRebarSlab.csproj|solutionrelative:05_updatenumberrebarslab\\updatenumberrebarslab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}|05_UpdateNumberRebarSlab\\05_UpdateNumberRebarSlab.csproj|D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\05_updatenumberrebarslab\\rebarslabinfor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C1AEF4F-E8C6-4AE1-8D35-CA600D180216}|05_UpdateNumberRebarSlab\\05_UpdateNumberRebarSlab.csproj|solutionrelative:05_updatenumberrebarslab\\rebarslabinfor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}|06_ChangBlockPMToDCE\\06_ChangBlockPMToDCE.csproj|d:\\study\\programming\\c-sharp\\08.cs_dhhtool_acadapi\\06_changblockpmtodce\\changblocktodce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B56E2B9-C8C7-4381-B770-DAAAB28DE450}|06_ChangBlockPMToDCE\\06_ChangBlockPMToDCE.csproj|solutionrelative:06_changblockpmtodce\\changblocktodce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RebarSlabInfor.cs",
-              "DocumentMoniker": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\05_UpdateNumberRebarSlab\\RebarSlabInfor.cs",
-              "RelativeDocumentMoniker": "05_UpdateNumberRebarSlab\\RebarSlabInfor.cs",
-              "ToolTip": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\05_UpdateNumberRebarSlab\\RebarSlabInfor.cs",
-              "RelativeToolTip": "05_UpdateNumberRebarSlab\\RebarSlabInfor.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAcwEYAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-29T14:40:08.028Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UpdateNumberRebarSlab.cs",
-              "DocumentMoniker": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\05_UpdateNumberRebarSlab\\UpdateNumberRebarSlab.cs",
-              "RelativeDocumentMoniker": "05_UpdateNumberRebarSlab\\UpdateNumberRebarSlab.cs",
-              "ToolTip": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\05_UpdateNumberRebarSlab\\UpdateNumberRebarSlab.cs",
-              "RelativeToolTip": "05_UpdateNumberRebarSlab\\UpdateNumberRebarSlab.cs",
-              "ViewState": "AQIAAIQAAAAAAAAAAAAQwKQAAABeAAAA",
+              "Title": "ChangBlockToDCE.cs",
+              "DocumentMoniker": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\06_ChangBlockPMToDCE\\ChangBlockToDCE.cs",
+              "RelativeDocumentMoniker": "06_ChangBlockPMToDCE\\ChangBlockToDCE.cs",
+              "ToolTip": "D:\\STUDY\\Programming\\C-Sharp\\08.CS_DHHTool_AcadAPI\\06_ChangBlockPMToDCE\\ChangBlockToDCE.cs",
+              "RelativeToolTip": "06_ChangBlockPMToDCE\\ChangBlockToDCE.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAUwCwAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-29T12:24:23.946Z",
+              "WhenOpened": "2024-10-19T08:05:29.228Z",
               "EditorCaption": ""
             }
           ]

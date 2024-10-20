@@ -60,6 +60,7 @@
     <Compile Include="ChangBlockToDCE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BlockRebarInfor.cs" />
+    <Compile Include="StringCompare.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
