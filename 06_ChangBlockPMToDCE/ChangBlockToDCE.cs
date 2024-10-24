@@ -225,9 +225,7 @@ namespace _06_ChangBlockPMToDCE
                             }
                         }
 
-                        List<BlockRebarDCEInfor> SortListQuery = listRebarInfor.OrderBy(x => x.SH).ToList();
-
-                        SortListQuery.Sort(new NaturalStringComparer());
+                        List<BlockRebarDCEInfor> SortListQuery = listRebarInfor.OrderBy(x => x.SH, new NaturalStringComparer()).ToList();
 
                         List<BlockRebarDCEInfor> sortList = SortListQuery.ToList();
                         BlockRebarDCEInfor TitleBlock = new BlockRebarDCEInfor();
@@ -450,6 +448,7 @@ namespace _06_ChangBlockPMToDCE
                         }
                         CountBlock = CountBlock + ss.Count;
                         tr.Commit();
+
                     }
                     CountWhile++;
                 }
