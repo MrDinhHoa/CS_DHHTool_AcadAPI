@@ -67,3 +67,39 @@ D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en
 D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcMr.resources.dll
 D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcWindows.resources.dll
 D:\01. WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.csproj.CopyComplete
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\03_DrawSectionBeam.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\03_DrawSectionBeam.pdb
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\accoremgd.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\acdbmgd.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\acmgd.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AdUiPalettes.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcDx.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcDxPublishUi.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AdWindows.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcCui.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcCustomize.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AppHomeInterop.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcMr.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcWindows.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AdUIMgd.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcTcMgd.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\AcMNUParser.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\Autodesk.AutoCAD.Interop.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\Autodesk.DesktopConnector.API.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\Newtonsoft.Json.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\Serilog.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\Serilog.Sinks.File.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\Autodesk.AutoCAD.Interop.Common.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\acdbmgd.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcDx.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcDxPublishUi.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AdWindows.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcCustomize.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AppHomeInterop.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcMr.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\bin\Debug\en-US\AcWindows.resources.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.csproj.AssemblyReference.cache
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.csproj.CoreCompileInputs.cache
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.csproj.CopyComplete
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.dll
+D:\01_WORKING\00. C-Sharp\06.CS_DHHTool_AcadAPI\03_DrawSectionBeam\obj\Debug\03_DrawSectionBeam.pdb

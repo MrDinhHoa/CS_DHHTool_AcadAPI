@@ -227,7 +227,7 @@ namespace _06_ChangBlockPMToDCE
 
                         List<BlockRebarDCEInfor> SortListQuery = listRebarInfor.OrderBy(x => x.SH, new NaturalStringComparer()).ToList();
 
-                        List<BlockRebarDCEInfor> sortList = SortListQuery.ToList();
+                         List<BlockRebarDCEInfor> sortList = SortListQuery.ToList();
                         BlockRebarDCEInfor TitleBlock = new BlockRebarDCEInfor();
                         TitleBlock.BlockName = "TKTitle";
                         sortList.Insert(0, TitleBlock);

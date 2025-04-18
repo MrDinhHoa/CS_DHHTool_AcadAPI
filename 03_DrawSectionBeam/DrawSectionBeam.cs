@@ -55,7 +55,7 @@ namespace _03_DrawSectionBeam
             PromptIntegerOptions promptDouble = new PromptIntegerOptions("\nEnter last row or: ");
             promptDouble.Keywords.Add("Setting");
             PromptIntegerResult lastRowNumber = ed.GetInteger(promptDouble);
-            int firstrow = 37;
+            int firstrow = 39;
             int lastrow = 40;
 
 
@@ -95,20 +95,20 @@ namespace _03_DrawSectionBeam
                         #region Lấy dữ liệu từ file excel
                         string nameBeam = (string)(activeSheet.Cells[i, 2] as Range).Value;
                         string localtion = (string)(activeSheet.Cells[i, 3] as Range).Value;
-                        var width = (activeSheet.Cells[i, 6] as Range).Value;
-                        var height = (activeSheet.Cells[i, 7] as Range).Value;
-                        var main1_Num1 = (activeSheet.Cells[i, 17] as Range).Value;
-                        var main1_Dia1 = (activeSheet.Cells[i, 18] as Range).Value;
-                        var main1_Num2 = (activeSheet.Cells[i, 19] as Range).Value;
-                        var main1_Dia2 = (activeSheet.Cells[i, 20] as Range).Value;
+                        var width = (activeSheet.Cells[i, 9] as Range).Value;
+                        var height = (activeSheet.Cells[i, 10] as Range).Value;
+                        var main1_Num1 = (activeSheet.Cells[i, 28] as Range).Value;
+                        var main1_Dia1 = (activeSheet.Cells[i, 29] as Range).Value;
+                        var main1_Num2 = (activeSheet.Cells[i, 30] as Range).Value;
+                        var main1_Dia2 = (activeSheet.Cells[i, 31] as Range).Value;
                         double main1_Num = 0;
                         if(main1_Num2 != null)
                         {main1_Num = main1_Num1 + main1_Num2;}
                         else {main1_Num = main1_Num1;}
-                        var main2_Num1 = (activeSheet.Cells[i, 21] as Range).Value;
-                        var main2_Dia1 = (activeSheet.Cells[i, 22] as Range).Value;
-                        var main2_Num2 = (activeSheet.Cells[i, 23] as Range).Value;
-                        var main2_Dia2 = (activeSheet.Cells[i, 24] as Range).Value;
+                        var main2_Num1 = (activeSheet.Cells[i, 32] as Range).Value;
+                        var main2_Dia1 = (activeSheet.Cells[i, 33] as Range).Value;
+                        var main2_Num2 = (activeSheet.Cells[i, 34] as Range).Value;
+                        var main2_Dia2 = (activeSheet.Cells[i, 35] as Range).Value;
                         double main2_Num = 0;
                         if(main2_Num1 !=null)
                         {
@@ -120,9 +120,9 @@ namespace _03_DrawSectionBeam
                         {
                             main2_Num = 0;
                         }    
-                        var stirrup_Dia = (activeSheet.Cells[i, 8] as Range).Value;
-                        var stirrup_Num = (activeSheet.Cells[i, 9] as Range).Value;
-                        var stirrup_Dis = (activeSheet.Cells[i, 10] as Range).Value;
+                        var stirrup_Dia = (activeSheet.Cells[i,11] as Range).Value;
+                        var stirrup_Num = (activeSheet.Cells[i,12] as Range).Value;
+                        var stirrup_Dis = (activeSheet.Cells[i,13] as Range).Value;
                         BlockTable blockTable = Tx.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
                         BlockTableRecord blkTableRecord = Tx.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
                         #endregion
@@ -135,7 +135,7 @@ namespace _03_DrawSectionBeam
                             blkTableRecord.AppendEntity(blockReference);
                             Tx.AddNewlyCreatedDBObject(blockReference, true);
                         }
-                        else if (localtion == "GỐI" || localtion == "END")
+                        else if (localtion == "GỐI" || localtion == "END" || localtion == "TRÊN")
                         {
                             BlockReference blockReference = new BlockReference(new Point3d(point2D.X + (i - firstrow) * 1000, point2D.Y, 0), blockIdEndSpan);
                             blkTableRecord.AppendEntity(blockReference);
@@ -189,9 +189,9 @@ namespace _03_DrawSectionBeam
                         for( int j = 1; j< main1_Num + 1;)
                         {
                             double tieBarMainY1 = 0;
-                            if (localtion.Contains("GỐI") ||localtion.Contains("END") == true)
+                            if (localtion.Contains("GỐI") ||localtion.Contains("END") || localtion.Contains("TRÊN") == true)
                             { tieBarMainY1 = point2D1.Y + height - cover - fillet;}
-                            else if (localtion.Contains("NHỊP") || localtion.Contains("SPAN") == true)
+                            else if (localtion.Contains("NHỊP") || localtion.Contains("SPAN") || localtion.Contains("DƯỚI") == true)
                             { tieBarMainY1 = point2D1.Y + cover + fillet; }    
                             BlockReference layer1Bar = new BlockReference(new Point3d(point2D1.X + cover + fillet + disLayer1Main*(j-1), tieBarMainY1, 0), tiebarId);
                             blkTableRecord.AppendEntity(layer1Bar);
@@ -241,15 +241,15 @@ namespace _03_DrawSectionBeam
 
                         if (localtion.Contains("ALL") || localtion.Contains("TẤT CẢ"))
                         {
-                            sub_Num = (activeSheet.Cells[i, 17] as Range).Value;
+                            sub_Num = (activeSheet.Cells[i, 28] as Range).Value;
                         }
                         else if (localtion == "GỐI" || localtion == "END")
                         {
-                            sub_Num = (activeSheet.Cells[i + 1, 17] as Range).Value;
+                            sub_Num = (activeSheet.Cells[i + 1, 28] as Range).Value;
                         }
                         else if (localtion == "NHỊP" || localtion == "SPAN")
                         {
-                            sub_Num = (activeSheet.Cells[i - 1, 17] as Range).Value;
+                            sub_Num = (activeSheet.Cells[i - 1, 28] as Range).Value;
                         }
                         double fullLayerSub = width - 2 * (cover + fillet);
                         double disLayerSub = fullLayerSub / (sub_Num - 1);
@@ -344,15 +344,15 @@ namespace _03_DrawSectionBeam
                         double sub_Dia = 0;
                         if (localtion.Contains("ALL") || localtion.Contains("TẤT CẢ"))
                         {
-                            sub_Dia = (activeSheet.Cells[i, 18] as Range).Value;
+                            sub_Dia = (activeSheet.Cells[i, 29] as Range).Value;
                         }
                         else if (localtion == "GỐI" || localtion == "END")
                         {
-                            sub_Dia = (activeSheet.Cells[i + 1, 18] as Range).Value;
+                            sub_Dia = (activeSheet.Cells[i + 1, 29] as Range).Value;
                         }
                         else if (localtion == "NHỊP" || localtion == "SPAN")
                         {
-                            sub_Dia = (activeSheet.Cells[i - 1, 18] as Range).Value;
+                            sub_Dia = (activeSheet.Cells[i - 1, 29] as Range).Value;
                         }
                         string SubRebar = sub_Num + "T" + sub_Dia;
                         Point3d alingPoint2 = new Point3d();
