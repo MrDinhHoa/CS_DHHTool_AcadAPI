@@ -71,7 +71,7 @@ namespace _03_DrawSectionBeam
                 BeamColumn = promptNameResult.Value;
 
             }
-            MessageBox.Show(BeamColumn.ToString(), "Test", MessageBoxButton.OK);
+            //MessageBox.Show(BeamColumn.ToString(), "Test", MessageBoxButton.OK);
 
             Excel.Application oExcelApp = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
             Workbook activeWorkbook = oExcelApp.ActiveWorkbook;
